@@ -17,7 +17,7 @@ export default function About() {
       {/* Main Content */}
       <div className=" flex-grow py-12 px-4">
         {/* First Section */}
-        <div className="max-w-5xl mx-auto bg-white rounded-lg shadow-md p-8 flex flex-col md:flex-row gap-6 mb-12">
+        <div className="max-w-5xl mx-auto bg-inherit rounded-lg shadow-md p-8 flex flex-col md:flex-row gap-6 mb-12">
           <div className="flex-1">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">
               Compare Parking 4 Me
@@ -55,7 +55,7 @@ export default function About() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="bg-white p-6 rounded-lg shadow-md text-left">
               <Car className="text-blue-900 w-8 h-8 mb-4" />
-              <h3 className="font-semibold text-lg mb-2">Meet and Greet Services</h3>
+              <h3 className="font-semibold text-lg mb-2 text-gray-800">Meet and Greet Services</h3>
               <p className="text-gray-600 text-sm">
                 Convenient valet parking service where we take care of your
                 vehicle while you travel.
@@ -63,7 +63,7 @@ export default function About() {
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md text-left">
               <Shield className="text-blue-900 w-8 h-8 mb-4" />
-              <h3 className="font-semibold text-lg mb-2">Park & Ride</h3>
+              <h3 className="font-semibold text-lg mb-2 text-gray-800">Park & Ride</h3>
               <p className="text-gray-600 text-sm">
                 Secure parking with shuttle service to get you to the terminal
                 quickly and safely.
@@ -71,7 +71,7 @@ export default function About() {
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md text-left">
               <Clock className="text-blue-900 w-8 h-8 mb-4" />
-              <h3 className="font-semibold text-lg mb-2">Onsite Parking</h3>
+              <h3 className="font-semibold text-lg mb-2 text-gray-800">Onsite Parking</h3>
               <p className="text-gray-600 text-sm">
                 Direct airport parking spaces for maximum convenience and peace
                 of mind.
@@ -79,7 +79,7 @@ export default function About() {
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md text-left">
               <Award className="text-blue-900 w-8 h-8 mb-4" />
-              <h3 className="font-semibold text-lg mb-2">Premium Service Standards</h3>
+              <h3 className="font-semibold text-lg mb-2 text-gray-800">Premium Service Standards</h3>
               <p className="text-gray-600 text-sm">
                 We maintain the highest quality standards with competitive
                 pricing.
@@ -121,7 +121,7 @@ export default function About() {
             <div className="bg-white p-6 rounded-lg shadow-md h-full flex flex-col justify-between">
               <div>
                 <Shield className="text-blue-900 w-8 h-8 mb-3" />
-                <h3 className="font-semibold text-lg mb-2">Security First</h3>
+                <h3 className="font-semibold text-lg mb-2 text-gray-800">Security First</h3>
                 <p className="text-gray-600 text-sm mb-3">
                   Our online booking facilities are secure, offering confidence
                   to clients who prefer internet bookings.

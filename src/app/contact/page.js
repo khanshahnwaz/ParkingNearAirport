@@ -31,7 +31,7 @@ const GetInTouch = () => {
                   type="text"
                   id="your-name"
                   placeholder="John Doe"
-                  className="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                  className="text-gray-700 mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                 />
               </div>
               <div className="flex-1">
@@ -40,7 +40,7 @@ const GetInTouch = () => {
                   type="email"
                   id="email"
                   placeholder="john@example.com"
-                  className="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                  className="text-gray-700 mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                 />
               </div>
             </div>
@@ -50,7 +50,7 @@ const GetInTouch = () => {
                 type="text"
                 id="subject"
                 placeholder="How can we help you?"
-                className="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="text-gray-700 mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
             <div>
@@ -59,7 +59,7 @@ const GetInTouch = () => {
                 id="message"
                 rows="4"
                 placeholder="Your message here..."
-                className="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="text-gray-700 mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
               ></textarea>
             </div>
             <div className="flex justify-end">
@@ -74,7 +74,7 @@ const GetInTouch = () => {
         </div>
 
         {/* Right Side: Contact Details & Business Hours */}
-        <div className="bg-gray-50 p-8 w-full lg:w-1/2 rounded-r-lg">
+        <div className="bg-inherit p-8 w-full lg:w-1/2 rounded-r-lg">
           <div className="space-y-8">
             {/* Phone */}
             <div className="bg-white rounded-xl p-6 hover:shadow-2xl flex items-start space-x-4">

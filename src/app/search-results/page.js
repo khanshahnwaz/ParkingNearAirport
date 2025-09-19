@@ -5,7 +5,7 @@ import { Suspense } from "react";
 
 export default function searchResponse(){
   return (
-    <Suspense>
+    <Suspense >
       <SearchResultsPage/>
     </Suspense>
   )

@@ -36,7 +36,7 @@ export default function ParkingCard({ data, promo,dates }) {
 
   return (
     <>
-      <div className="border rounded-lg shadow-md flex flex-col p-4 bg-white">
+      <div className="border rounded-lg shadow-md flex flex-col p-4 ">
         {/* Header */}
         {promo && (
           <div className="bg-green-200 text-sm text-center font-medium py-1 rounded-t-md text-green-800">
@@ -74,7 +74,7 @@ export default function ParkingCard({ data, promo,dates }) {
         {/* Price */}
         <div className="text-center py-2">
           {discount > 0 && (
-            <p className="line-through text-gray-400"><del>£{data.price}</del></p>
+            <p className="line-through text-gray-500"><del>£{data.price}</del></p>
           )}
           <p className="text-2xl font-bold text-blue-900">
             £{discountedPrice}

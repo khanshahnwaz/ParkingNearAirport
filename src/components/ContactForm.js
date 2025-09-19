@@ -24,13 +24,13 @@ export default function ContactForm({ onNext }) {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 w-full md:w-2/3 h-max">
+    <div className="bg-[#fdf8f2] rounded-lg shadow-md p-6 w-full md:w-2/3 h-max">
       <h2 className="text-xl font-semibold mb-4 text-gray-800">Contact Details</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700">Title</label>
-            <select name="title" value={formData.title} onChange={handleChange} className="py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+            <select name="title" value={formData.title} onChange={handleChange} className="text-gray-600 py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm">
               <option>Mr</option>
               <option>Mrs</option>
               <option>Ms</option>
@@ -38,27 +38,27 @@ export default function ContactForm({ onNext }) {
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">First Name*</label>
-            <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required className=" py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
+            <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required className="text-gray-600 py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700">Last Name*</label>
-            <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required className="py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
+            <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required className="text-gray-600 py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">Email*</label>
-            <input type="email" name="email" value={formData.email} onChange={handleChange} required className="py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
+            <input type="email" name="email" value={formData.email} onChange={handleChange} required className="text-gray-600 py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700">Contact Number* (11 digits)</label>
-            <input type="tel" name="contact" value={formData.contact} onChange={handleChange} required className="py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
+            <input type="tel" name="contact" value={formData.contact} onChange={handleChange} required className="text-gray-600 py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">People*</label>
-            <input type="number" name="people" value={formData.people} onChange={handleChange} required className="py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
+            <input type="number" name="people" value={formData.people} onChange={handleChange} required className="text-gray-600 py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
           </div>
         </div>
         <div className="flex justify-between items-center py-4 px-6 bg-blue-100 rounded-md">

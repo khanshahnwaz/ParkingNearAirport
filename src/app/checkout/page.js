@@ -86,7 +86,7 @@ export default function CheckoutPage() {
     const [currentStep, setCurrentStep] = useState(1);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
+    <div className="min-h-screen bg-[#fdf8f2]">
       {/* CheckoutStepper can remain here as it does not use client-side hooks */}
       <CheckoutStepper currentStep={currentStep}  />
       

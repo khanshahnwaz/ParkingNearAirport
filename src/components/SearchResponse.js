@@ -76,8 +76,8 @@ if (promo !== "") {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 py-10 px-5 ">
-      <div className="bg-white">
+    <div className="bg-[#fdf8f2] min-h-screen  py-10 px-5 ">
+      <div className="">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-8">
           {/* Header */}
           <h2 className="text-2xl font-bold text-gray-900 mb-1 mt-4">
@@ -89,8 +89,8 @@ if (promo !== "") {
           </p>
 
           {/* Search Summary Box */}
-          <div className="bg-white border rounded-lg p-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6 shadow-sm">
-            <div className="flex items-center gap-6">
+          <div className=" border rounded-lg p-4 flex flex-col  md:flex-row md:items-center md:justify-between gap-4 mb-6 shadow-sm">
+            <div className="flex flex-col md:flex-row  md:items-center gap-6">
               <span className="flex items-center gap-2 text-gray-700">
                 <FiMapPin className="text-blue-600" />
                 {location || "—"}
@@ -140,13 +140,13 @@ if (promo !== "") {
 
             {/* Sort Dropdown */}
             <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-600 mb-1">
+              <label className="block text-sm font-medium text-gray-700 mb-1">
                 Sort By
               </label>
               <select
                 value={sort}
                 onChange={(e) => setSort(e.target.value)}
-                className="w-full md:w-1/3 border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="text-gray-600 w-full md:w-1/3 border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
               >
                 <option>Price (Low to High)</option>
                 <option>Price (High to Low)</option>
@@ -175,7 +175,7 @@ if (promo !== "") {
       </div>
 
       {/* Results grid */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 mt-8">
+      <div className="md:max-w-7xl mx-auto px-6 lg:px-8 mt-8">
         {count === 0 ? (
           <div className="text-center text-gray-600 py-20">
             {location
