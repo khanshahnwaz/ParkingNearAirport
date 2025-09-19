@@ -41,7 +41,7 @@ export default function ParkingModal({ data, onClose }) {
       <div className="fixed inset-0 flex items-center justify-center z-50">
         <div 
           ref={modalRef}
-          className="bg-white rounded-lg shadow-lg w-[70vw] md:w-[60vw]  h-[70vh] md:h-[60vh] flex relative"
+          className="bg-white rounded-lg shadow-lg w-full md:w-[60vw]  h-[70vh] md:h-[60vh] flex relative"
         >
           {/* Close Button */}
           <button

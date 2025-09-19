@@ -10,6 +10,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      {/* Razorpay script */}
+        <script src="https://checkout.razorpay.com/v1/checkout.js" async></script>
+      
       <body className="bg-[#fdf8f2]">
         <Navbar />
         {children}

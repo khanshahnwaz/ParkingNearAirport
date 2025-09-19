@@ -19,7 +19,7 @@ export default function VehicleForm({ onNext, onPrevious }) {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 w-full md:w-2/3 h-max">
+    <div className="bg-[#fdf8f2] rounded-lg shadow-md p-6 w-full md:w-2/3 h-max">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-semibold text-gray-800">Vehicle Details</h2>
         <button className="text-blue-600 font-semibold hover:underline">
