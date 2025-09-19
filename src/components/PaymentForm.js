@@ -9,7 +9,7 @@ export default function PaymentForm({ bookingSummary, onPrevious, onCompleteBook
       <h2 className="text-xl font-semibold mb-4 text-gray-800">Payment</h2>
       <div className="bg-blue-50 border-l-4 border-blue-500 text-blue-800 p-4 mb-6">
         <p className="font-semibold">Ready to complete your booking</p>
-        <p className="text-sm">Please review your details and click "Complete Booking" to proceed with payment.</p>
+        <p className="text-sm">Please review your details and click Complete Booking to proceed with payment.</p>
       </div>
 
       <div className="bg-gray-50 rounded-lg p-6 space-y-4">
