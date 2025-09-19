@@ -1,0 +1,106 @@
+[
+  {
+      "name": "QuickPark",
+      "location":"Gatwick Airport(LGW)",
+      "logo": "/quickpark.png",
+      "reviews": 120,
+     "price": 59.85,
+      "icons": ["⏰", "📷", "✔", "❓", "🛡"],
+      "features": [
+        "CCTV Secure Compound",
+        "All Inclusive Price",
+        "5-10 Minutes Airport Transfer",
+        "24 Hours Frequent Shuttles",
+        "No commercial vans & Minibus"
+      ],
+      "extraFeatures": [
+        "24hr Patrols",
+        "Fencing",
+        "Secure Barrier",
+        "Park Mark",
+        "BPA Member",
+        "CCTV",
+        "Security Lighting",
+        "Patrolled",
+        "Disability Friendly"
+      ]
+    },
+    {
+      "name": "QuickPark",
+      "location":"Gatwick Airport(LGW)",
+      "logo": "/quickpark.png",
+      "reviews": 120,
+     "price": 59.85,
+      "icons": ["⏰", "📷", "✔", "❓", "🛡"],
+      "features": [
+        "CCTV Secure Compound",
+        "All Inclusive Price",
+        "5-10 Minutes Airport Transfer",
+        "24 Hours Frequent Shuttles",
+        "No commercial vans & Minibus"
+      ],
+      "extraFeatures": [
+        "24hr Patrols",
+        "Fencing",
+        "Secure Barrier",
+        "Park Mark",
+        "BPA Member",
+        "CCTV",
+        "Security Lighting",
+        "Patrolled",
+        "Disability Friendly"
+      ]
+    },
+    {
+      "name": "QuickPark",
+      "location":"Gatwick Airport(LGW)",
+      "logo": "/quickpark.png",
+      "reviews": 120,
+     "price": 59.85,
+      "icons": ["⏰", "📷", "✔", "❓", "🛡"],
+      "features": [
+        "CCTV Secure Compound",
+        "All Inclusive Price",
+        "5-10 Minutes Airport Transfer",
+        "24 Hours Frequent Shuttles",
+        "No commercial vans & Minibus"
+      ],
+      "extraFeatures": [
+        "24hr Patrols",
+        "Fencing",
+        "Secure Barrier",
+        "Park Mark",
+        "BPA Member",
+        "CCTV",
+        "Security Lighting",
+        "Patrolled",
+        "Disability Friendly"
+      ]
+    },
+    {
+      "name": "Parkway",
+      "location":"Heathrow Airport(LHR)",
+      "logo": "/parkway.png",
+      "reviews": 95,
+      "price": 59.85,
+      "icons": ["⏰", "📷", "✔", "🔑", "❓"],
+      "features": [
+        "CCTV Secure Compound",
+        "All Inclusive Price",
+        "5-10 Minutes Airport Transfer",
+        "24 Hours Frequent Shuttles",
+        "No commercial vans & Minibus"
+      ],
+      "extraFeatures": [
+        "24hr Patrols",
+        "Fencing",
+        "Secure Barrier",
+        "Park Mark",
+        "BPA Member",
+        "CCTV",
+        "Security Lighting",
+        "Patrolled",
+        "Disability Friendly"
+      ]
+    }
+]

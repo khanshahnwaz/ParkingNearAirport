@@ -1,0 +1,22 @@
+[
+  {
+    "code": "SAVE10",
+    "label": "SAVE10 - 10% Off",
+    "discount": 10
+  },
+  {
+    "code": "WELCOME15",
+    "label": "WELCOME15 - 15% Off",
+    "discount": 15
+  },
+  {
+    "code": "AIRPORT20",
+    "label": "AIRPORT20 - 20% Off",
+    "discount": 20
+  },
+  {
+    "code": "VIP25",
+    "label": "VIP25 - 25% Off",
+    "discount": 25
+  }
+]
