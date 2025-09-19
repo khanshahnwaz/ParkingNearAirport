@@ -28,7 +28,7 @@ export default function HowItWorks() {
         <p className="text-gray-600 mb-12">
           Finding and booking airport parking has never been easier.
         </p>
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-6 mt-4 shadow-xl ">
           {steps.map((step) => (
             <div
               key={step.number}
