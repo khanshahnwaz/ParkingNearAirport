@@ -1,23 +1,27 @@
 // checkout/page.js
 "use client";
-import CheckoutStepper from "@/components/CheckoutStepper";
-import ContactForm from "@/components/ContactForm";
-import BookingSummary from "@/components/BookingSummary";
-import { useSearchParams } from "next/navigation";
-import { useState,Suspense } from "react";
 
-export default function CheckoutPage() {
+import { useState, Suspense } from "react";
+import CheckoutStepper from "@/components/CheckoutStepper";
+import BookingSummary from "@/components/BookingSummary";
+import ContactForm from "@/components/ContactForm";
+// ... import other components
+import { useSearchParams } from "next/navigation";
+
+// A new component to handle the form logic and useSearchParams
+function CheckoutForm() {
   const searchParams = useSearchParams();
   const bookingParam = searchParams.get('booking');
-  console.log(JSON.parse(bookingParam))
   let booking = {};
 
   try {
     if (bookingParam) {
-      booking = JSON.parse(bookingParam);
+      // Decode the URL-encoded string before parsing
+      booking = JSON.parse(decodeURIComponent(bookingParam));
     }
   } catch (e) {
     console.error("Failed to parse booking data from URL", e);
+    // You may want to redirect or show an error message to the user here
   }
 
   // Fallback to static data if no valid booking data is found in URL
@@ -26,9 +30,9 @@ export default function CheckoutPage() {
     location: "Gatwick Airport",
     country: "London, UK",
     type: "Meet & Greet",
-    dropoff: "Thursday, 25 September 2025", // Hardcoded for this example
-    pickup: "Friday, 26 September 2025",   // Hardcoded for this example
-    duration: 1,                          // Hardcoded for this example
+    dropoff: "Thursday, 25 September 2025",
+    pickup: "Friday, 26 September 2025",
+    duration: 1,
     base: 60,
     promoCode: "SUMMERS",
     discount: 3.15,
@@ -67,14 +71,26 @@ export default function CheckoutPage() {
   };
 
   return (
-    <Suspense>
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
-      <CheckoutStepper currentStep={currentStep} />
+    <>
       <div className="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row gap-8">
         {renderStep()}
         <BookingSummary booking={{ ...finalBooking, ...formData }} />
       </div>
+    </>
+  );
+}
+
+// The main export component, now responsible for the layout and Suspense boundary
+export default function CheckoutPage() {
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
+      {/* CheckoutStepper can remain here as it does not use client-side hooks */}
+      <CheckoutStepper />
+      
+      {/* Wrap the component that uses useSearchParams in Suspense */}
+      <Suspense fallback={<div>Loading...</div>}>
+        <CheckoutForm />
+      </Suspense>
     </div>
-    </Suspense>
   );
 }
