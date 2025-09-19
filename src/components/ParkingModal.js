@@ -1,9 +1,11 @@
+// components/ParkingModal.jsx
 "use client";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { X } from "lucide-react";
 
 export default function ParkingModal({ data, onClose }) {
   const [activeTab, setActiveTab] = useState("overview");
+  const modalRef = useRef(null);
 
   const tabs = [
     { id: "overview", label: "Overview" },
@@ -13,14 +15,34 @@ export default function ParkingModal({ data, onClose }) {
     { id: "reviews", label: "Reviews" },
   ];
 
+  // Effect to handle clicks outside the modal
+  useEffect(() => {
+    function handleOutsideClick(event) {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        onClose();
+      }
+    }
+    
+    // Add event listener to the document body
+    document.addEventListener("mousedown", handleOutsideClick);
+    
+    // Cleanup the event listener on component unmount
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [onClose]);
+
   return (
     <>
-      {/* Overlay */}
-      <div className="fixed inset-0 bg-black/50 z-50 h-full w-full"></div>
+      {/* Overlay - now just a visual backdrop */}
+      <div className="fixed inset-0 bg-black/50 z-50"></div>
 
-      {/* Modal */}
+      {/* Modal - The main container for the modal, handling positioning */}
       <div className="fixed inset-0 flex items-center justify-center z-50">
-        <div className="bg-white rounded-lg shadow-lg w-11/12 max-w-5xl flex relative">
+        <div 
+          ref={modalRef}
+          className="bg-white rounded-lg shadow-lg w-[60vw] h-[60vh] flex relative"
+        >
           {/* Close Button */}
           <button
             onClick={onClose}
@@ -35,7 +57,7 @@ export default function ParkingModal({ data, onClose }) {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`block w-full text-left px-3 py-2 rounded-md ${
+                className={`block w-full text-left px-3 py-2 rounded-md transition-colors duration-200 ${
                   activeTab === tab.id
                     ? "bg-yellow-200 font-medium text-blue-900"
                     : "hover:bg-gray-100 text-gray-700"
@@ -47,7 +69,7 @@ export default function ParkingModal({ data, onClose }) {
           </div>
 
           {/* Content */}
-          <div className="flex-1 p-6 overflow-y-auto max-h-[80vh]">
+          <div className="flex-1 p-6 overflow-y-auto">
             {/* Price & Title */}
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-semibold">{data.name}</h2>

@@ -22,13 +22,13 @@ export default function FlightForm({ onNext, onPrevious }) {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 w-full md:w-2/3">
+    <div className="bg-white rounded-lg shadow-md p-6 w-full md:w-2/3 h-max">
       <h2 className="text-xl font-semibold mb-4 text-gray-800">Flight Details</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label className="block text-sm font-medium text-gray-700">Select Terminal</label>
-          <select className="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
-            <option>Select Terminal</option>
+          <select className="py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+            <option className='py-2'>Select Terminal</option>
             {/* Add terminal options here */}
           </select>
         </div>
@@ -36,11 +36,11 @@ export default function FlightForm({ onNext, onPrevious }) {
           <label className="block text-sm font-medium text-gray-700">Do you have terminal and flight details?</label>
           <div className="flex items-center space-x-4 mt-2">
             <label className="flex items-center space-x-2">
-              <input type="radio" name="hasFlightDetails" value="yes" checked={formData.hasFlightDetails} onChange={handleChange} className="form-radio" />
+              <input type="radio" name="hasFlightDetails" value="yes" checked={formData.hasFlightDetails} onChange={handleChange} className="py-2 form-radio" />
               <span>Yes</span>
             </label>
             <label className="flex items-center space-x-2">
-              <input type="radio" name="hasFlightDetails" value="no" checked={!formData.hasFlightDetails} onChange={handleChange} className="form-radio" />
+              <input type="radio" name="hasFlightDetails" value="no" checked={!formData.hasFlightDetails} onChange={handleChange} className="py-2 form-radio" />
               <span>No</span>
             </label>
           </div>

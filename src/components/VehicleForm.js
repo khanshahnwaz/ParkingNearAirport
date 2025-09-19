@@ -19,7 +19,7 @@ export default function VehicleForm({ onNext, onPrevious }) {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 w-full md:w-2/3">
+    <div className="bg-white rounded-lg shadow-md p-6 w-full md:w-2/3 h-max">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-semibold text-gray-800">Vehicle Details</h2>
         <button className="text-blue-600 font-semibold hover:underline">
@@ -30,21 +30,21 @@ export default function VehicleForm({ onNext, onPrevious }) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700">Make</label>
-            <input type="text" name="make" value={formData.make} onChange={handleChange} className="mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
+            <input type="text" name="make" value={formData.make} onChange={handleChange} className="mt-1 py-2 block w-full border-gray-300 rounded-md shadow-sm" />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">Model</label>
-            <input type="text" name="model" value={formData.model} onChange={handleChange} className="mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
+            <input type="text" name="model" value={formData.model} onChange={handleChange} className="py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700">Color</label>
-            <input type="text" name="color" value={formData.color} onChange={handleChange} className="mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
+            <input type="text" name="color" value={formData.color} onChange={handleChange} className="py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">Reg No</label>
-            <input type="text" name="regNo" value={formData.regNo} onChange={handleChange} className="mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
+            <input type="text" name="regNo" value={formData.regNo} onChange={handleChange} className="py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
           </div>
         </div>
         <div className="flex justify-between mt-6">

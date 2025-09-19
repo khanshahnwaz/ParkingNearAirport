@@ -22,7 +22,7 @@ export default function HowItWorks() {
   ];
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-[#fdf8f2]">
       <div className="max-w-6xl mx-auto px-6 text-center">
         <h2 className="text-3xl font-bold text-gray-900 mb-2">How It Works</h2>
         <p className="text-gray-600 mb-12">

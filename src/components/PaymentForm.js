@@ -2,7 +2,7 @@
 'use client';
 
 export default function PaymentForm({ bookingSummary, onPrevious, onCompleteBooking }) {
-  const { name, email, contact, people } = bookingSummary;
+  const { firstName,lastName,title, email, contact, people } = bookingSummary;
 
   return (
     <div className="bg-white rounded-lg shadow-md p-6 w-full md:w-2/3">
@@ -14,7 +14,7 @@ export default function PaymentForm({ bookingSummary, onPrevious, onCompleteBook
 
       <div className="bg-gray-50 rounded-lg p-6 space-y-4">
         <h3 className="font-semibold text-gray-800">Booking Summary</h3>
-        <p><span className="font-medium text-gray-600">Name:</span> {name}</p>
+        <p><span className="font-medium text-gray-600">Name:</span> {`${title} ${firstName} ${lastName}`}</p>
         <p><span className="font-medium text-gray-600">Email:</span> {email}</p>
         <p><span className="font-medium text-gray-600">Contact:</span> {contact}</p>
         <p><span className="font-medium text-gray-600">People:</span> {people}</p>

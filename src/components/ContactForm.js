@@ -17,6 +17,7 @@ export default function ContactForm({ onNext }) {
   };
 
   const handleSubmit = (e) => {
+    console.log("first step")
     e.preventDefault();
     // In a real app, you would validate the form data here
     onNext(formData);

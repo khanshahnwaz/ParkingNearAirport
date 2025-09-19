@@ -7,9 +7,11 @@ import BookingSummary from "@/components/BookingSummary";
 import ContactForm from "@/components/ContactForm";
 // ... import other components
 import { useSearchParams } from "next/navigation";
-
+import FlightForm from "@/components/FlightForm";
+import VehicleForm from "@/components/VehicleForm";
+import PaymentForm from "@/components/PaymentForm";
 // A new component to handle the form logic and useSearchParams
-function CheckoutForm() {
+function CheckoutForm({currentStep,setCurrentStep}) {
   const searchParams = useSearchParams();
   const bookingParam = searchParams.get('booking');
   let booking = {};
@@ -41,7 +43,6 @@ function CheckoutForm() {
 
   const finalBooking = Object.keys(booking).length > 0 ? booking : defaultBooking;
 
-  const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({});
 
   const handleNext = (stepData) => {
@@ -59,12 +60,12 @@ function CheckoutForm() {
     switch (currentStep) {
       case 1:
         return <ContactForm onNext={handleNext} />;
-      // case 2:
-      //   return <FlightForm onNext={handleNext} onPrevious={handlePrevious} />;
-      // case 3:
-      //   return <VehicleForm onNext={handleNext} onPrevious={handlePrevious} />;
-      // case 4:
-      //   return <PaymentForm onPrevious={handlePrevious} onCompleteBooking={() => console.log('Booking completed')} />;
+      case 2:
+        return <FlightForm onNext={handleNext} onPrevious={handlePrevious} />;
+      case 3:
+        return <VehicleForm onNext={handleNext} onPrevious={handlePrevious} />;
+      case 4:
+        return <PaymentForm bookingSummary={formData} onPrevious={handlePrevious} onCompleteBooking={() => {alert("Boking completed check console for data"),console.log('Booking completed',formData)}} />;
       default:
         return <ContactForm onNext={handleNext} />;
     }
@@ -82,14 +83,16 @@ function CheckoutForm() {
 
 // The main export component, now responsible for the layout and Suspense boundary
 export default function CheckoutPage() {
+    const [currentStep, setCurrentStep] = useState(1);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
       {/* CheckoutStepper can remain here as it does not use client-side hooks */}
-      <CheckoutStepper />
+      <CheckoutStepper currentStep={currentStep}  />
       
       {/* Wrap the component that uses useSearchParams in Suspense */}
       <Suspense fallback={<div>Loading...</div>}>
-        <CheckoutForm />
+        <CheckoutForm currentStep={currentStep} setCurrentStep={setCurrentStep} />
       </Suspense>
     </div>
   );

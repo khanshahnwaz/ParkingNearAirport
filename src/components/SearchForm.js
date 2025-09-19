@@ -43,7 +43,7 @@ export default function SearchForm() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <form
           onSubmit={handleSubmit}
-          className="bg-white shadow-md rounded-xl flex flex-col md:flex-row items-stretch md:items-center p-4 gap-4"
+          className="bg-transparent shadow-md rounded-xl flex flex-col md:flex-row items-stretch md:items-center p-4 gap-4"
         >
           {/* Location */}
           <HoverSelect

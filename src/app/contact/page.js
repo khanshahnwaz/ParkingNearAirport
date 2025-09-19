@@ -2,7 +2,7 @@ import React from 'react';
 
 const GetInTouch = () => {
   return (
-    <div className="bg-gray-100 min-h-screen items-center justify-center">
+    <div className=" min-h-screen items-center justify-center">
         <div className="bg-gradient-to-b from-[#001a4d] to-blue-900 text-white py-16 text-center">
         <div className="max-w-3xl mx-auto">
           <div className="flex justify-center mb-4">
@@ -16,7 +16,7 @@ const GetInTouch = () => {
           </p>
         </div>
       </div>
-      <div className="bg-white rounded-lg shadow-lg flex max-w-6xl w-full mx-auto">
+      <div className=" rounded-lg shadow-lg md:flex max-w-6xl w-full mx-auto">
         {/* Left Side: Form */}
         <div className="p-8 w-full lg:w-1/2">
           <h2 className="text-2xl font-semibold mb-4 text-gray-800">Get in Touch</h2>

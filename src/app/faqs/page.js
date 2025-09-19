@@ -58,7 +58,7 @@ export default function FAQPage() {
   });
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#fdf8f2]">
       {/* Hero Section */}
       <div className="bg-gradient-to-b from-[#001a4d] to-blue-900 text-white py-16 text-center">
         <div className="max-w-3xl mx-auto">
@@ -75,7 +75,7 @@ export default function FAQPage() {
       </div>
 
       {/* FAQ Content */}
-      <div className="max-w-4xl mx-auto p-6">
+      <div className="max-w-4xl mx-auto p-6 text-gray-600">
         {/* Search */}
         <div className="bg-white shadow rounded-xl p-4 mb-6">
           <input
@@ -88,7 +88,7 @@ export default function FAQPage() {
         </div>
 
         {/* Categories */}
-        <div className="flex flex-wrap gap-3 mb-6">
+        <div className="flex flex-wrap gap-3 mb-6 text-gray-600">
           {categories.map((category) => (
             <button
               key={category}
@@ -96,7 +96,7 @@ export default function FAQPage() {
               className={`px-4 py-2 rounded-lg text-sm font-medium ${
                 selectedCategory === category
                   ? "bg-blue-800 text-white"
-                  : "bg-gray-100 hover:bg-gray-200"
+                  : "bg-gray-100 hover:bg-gray-200 "
               }`}
             >
               {category}
@@ -109,7 +109,7 @@ export default function FAQPage() {
           {filteredFaqs.map((faq, index) => (
             <div
               key={index}
-              className="bg-white border rounded-lg shadow-sm overflow-hidden"
+              className=" border rounded-lg shadow-sm overflow-hidden "
             >
               <button
                 onClick={() =>

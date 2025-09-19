@@ -10,7 +10,7 @@ export default function CheckoutStepper({ currentStep }) {
   ];
 
   return (
-    <div className="flex justify-center items-center py-6 w-3/5 mx-auto">
+    <div className="flex justify-center items-center py-6 w-4/5 md:w-3/5 mx-auto">
       {steps.map((step, i) => (
         <React.Fragment key={step.id}>
           <div className="flex flex-col items-center">
