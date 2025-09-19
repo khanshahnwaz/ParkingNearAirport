@@ -2,7 +2,7 @@ import React from 'react';
 
 const GetInTouch = () => {
   return (
-    <div className=" min-h-screen items-center justify-center">
+    <div className=" min-h-screen items-center justify-center bg-[#fdf8f2]">
         <div className="bg-gradient-to-b from-[#001a4d] to-blue-900 text-white py-16 text-center">
         <div className="max-w-3xl mx-auto">
           <div className="flex justify-center mb-4">

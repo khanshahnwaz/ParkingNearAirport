@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 
 export default function About() {
   return (
-    <div className=" min-h-screen flex flex-col">
+    <div className="bg-[#fdf8f2] min-h-screen flex flex-col">
       {/* Hero Section */}
       <div className="bg-gradient-to-b from-[#001a4d] to-blue-900 text-center py-20">
         <h1 className="text-4xl md:text-5xl font-bold text-white">About Us</h1>
@@ -15,7 +15,7 @@ export default function About() {
       </div>
 
       {/* Main Content */}
-      <div className="flex-grow py-12 px-4">
+      <div className=" flex-grow py-12 px-4">
         {/* First Section */}
         <div className="max-w-5xl mx-auto bg-white rounded-lg shadow-md p-8 flex flex-col md:flex-row gap-6 mb-12">
           <div className="flex-1">

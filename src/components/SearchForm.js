@@ -58,7 +58,7 @@ export default function SearchForm() {
             value={dates.start}
             min={new Date().toISOString().split("T")[0]}
             onChange={(e) => setDates({ ...dates, start: e.target.value })}
-            className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="text-gray-700 flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
 
           {/* End Date */}
@@ -67,7 +67,7 @@ export default function SearchForm() {
             value={dates.end}
             min={dates.start}
             onChange={(e) => setDates({ ...dates, end: e.target.value })}
-            className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="text-gray-700 flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
 
           {/* Promo Code (Dropdown from JSON) */}
@@ -86,7 +86,7 @@ export default function SearchForm() {
             disabled={!isFormValid}
             className={`px-6 py-2 rounded-lg bg-blue-900 text-white ${
               isFormValid
-                ? "cursor-pointer hover:bg-blue-700"
+                ? "cursor-pointer hover:bg-blue-900"
                 : "cursor-not-allowed opacity-60"
             }`}
           >
