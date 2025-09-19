@@ -21,7 +21,7 @@ const GetInTouch = () => {
         <div className="p-8 w-full lg:w-1/2">
           <h2 className="text-2xl font-semibold mb-4 text-gray-800">Get in Touch</h2>
           <p className="text-gray-600 mb-6">
-            Have questions about our services? Fill out the form below and we'll get back to you as soon as possible.
+            Have questions about our services? Fill out the form below and we&apos;ll get back to you as soon as possible.
           </p>
           <form className="space-y-4">
             <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
@@ -100,7 +100,7 @@ const GetInTouch = () => {
               <div>
                 <h3 className="text-lg font-semibold text-gray-800">Email</h3>
                 <p className="text-gray-600">info@compareparking4me.co.uk</p>
-                <p className="text-sm text-gray-500">We'll respond as soon as possible</p>
+                <p className="text-sm text-gray-500">We&apos;ll respond as soon as possible</p>
               </div>
             </div>
 

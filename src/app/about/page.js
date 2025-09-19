@@ -97,8 +97,8 @@ export default function About() {
             </h2>
             <p className="text-gray-600 mb-6 leading-relaxed">
               We personally visit car parks to ensure security measures are in
-              place. For our customers' peace of mind, we verify parking
-              operators' insurance and liability documents to ensure operational
+              place. For our customers&apos; peace of mind, we verify parking
+              operators&apos; insurance and liability documents to ensure operational
               standards are met.
             </p>
             <ul className="space-y-3 text-gray-700">
