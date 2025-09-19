@@ -4,7 +4,7 @@ import CheckoutStepper from "@/components/CheckoutStepper";
 import ContactForm from "@/components/ContactForm";
 import BookingSummary from "@/components/BookingSummary";
 import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useState,Suspense } from "react";
 
 export default function CheckoutPage() {
   const searchParams = useSearchParams();
@@ -67,6 +67,7 @@ export default function CheckoutPage() {
   };
 
   return (
+    <Suspense>
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
       <CheckoutStepper currentStep={currentStep} />
       <div className="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row gap-8">
@@ -74,5 +75,6 @@ export default function CheckoutPage() {
         <BookingSummary booking={{ ...finalBooking, ...formData }} />
       </div>
     </div>
+    </Suspense>
   );
 }
