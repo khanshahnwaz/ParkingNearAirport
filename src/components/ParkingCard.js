@@ -100,7 +100,7 @@ export default function ParkingCard({ data, promo,dates }) {
           </button>
           <button
             onClick={() => setOpen(true)}
-            className="flex-1 border border-gray-400 py-2 rounded-md hover:bg-gray-100"
+            className="text-gray-700 flex-1 border border-gray-400 py-2 rounded-md hover:bg-gray-100"
           >
             More Info
           </button>

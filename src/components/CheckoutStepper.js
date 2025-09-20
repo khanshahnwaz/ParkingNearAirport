@@ -20,7 +20,7 @@ export default function CheckoutStepper({ currentStep }) {
                 'border-gray-300 text-gray-500'}`}>
               {step.icon}
             </div>
-            <p className={`text-sm mt-2 transition-colors duration-300 ${currentStep === step.id ? 'text-blue-900 font-semibold' : 'text-gray-700'}`}>
+            <p className={`text-sm text-center mt-2 transition-colors duration-300 ${currentStep === step.id ? 'text-blue-900 font-semibold' : 'text-gray-700'}`}>
               {step.label}
             </p>
           </div>

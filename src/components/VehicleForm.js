@@ -30,21 +30,21 @@ export default function VehicleForm({ onNext, onPrevious }) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700">Make</label>
-            <input type="text" name="make" value={formData.make} onChange={handleChange} className="mt-1 py-2 block w-full border-gray-300 rounded-md shadow-sm" />
+            <input type="text" name="make" value={formData.make} onChange={handleChange} className="text-gray-600 mt-1 py-2 block w-full border-gray-300 rounded-md shadow-sm" />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">Model</label>
-            <input type="text" name="model" value={formData.model} onChange={handleChange} className="py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
+            <input type="text" name="model" value={formData.model} onChange={handleChange} className="text-gray-600 py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700">Color</label>
-            <input type="text" name="color" value={formData.color} onChange={handleChange} className="py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
+            <input type="text" name="color" value={formData.color} onChange={handleChange} className="text-gray-600 py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">Reg No</label>
-            <input type="text" name="regNo" value={formData.regNo} onChange={handleChange} className="py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
+            <input type="text" name="regNo" value={formData.regNo} onChange={handleChange} className="text-gray-600 py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
           </div>
         </div>
         <div className="flex justify-between mt-6">

@@ -27,8 +27,8 @@ export default function FlightForm({ onNext, onPrevious }) {
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label className="block text-sm font-medium text-gray-700">Select Terminal</label>
-          <select className="py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm">
-            <option className='py-2 bg-gray-600'>Select Terminal</option>
+          <select className="text-gray-600 py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+            <option className='py-2 text-gray-600'>Select Terminal</option>
             {/* Add terminal options here */}
           </select>
         </div>
@@ -37,7 +37,7 @@ export default function FlightForm({ onNext, onPrevious }) {
           <div className="flex items-center space-x-4 mt-2">
             <label className="flex items-center space-x-2">
               <input type="radio" name="hasFlightDetails" value="yes" checked={formData.hasFlightDetails} onChange={handleChange} className="text-gray-600 py-2 form-radio" />
-              <span>Yes</span>
+              <span className='text-gray-600'>Yes</span>
             </label>
             <label className="flex items-center space-x-2">
               <input type="radio" name="hasFlightDetails" value="no" checked={!formData.hasFlightDetails} onChange={handleChange} className="py-2 form-radio" />
@@ -50,7 +50,7 @@ export default function FlightForm({ onNext, onPrevious }) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700">Departure Terminal</label>
-              <select name="departureTerminal" value={formData.departureTerminal} onChange={handleChange} className="bg-gray-600 mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+              <select name="departureTerminal" value={formData.departureTerminal} onChange={handleChange} className="py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm">
                 <option className='py-2'>Select Terminal</option>
                 {/* Add terminal options here */}
               </select>
@@ -61,8 +61,8 @@ export default function FlightForm({ onNext, onPrevious }) {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700">Arrival Terminal</label>
-              <select name="arrivalTerminal" value={formData.arrivalTerminal} onChange={handleChange} className="bg-gray-600 mt-1 block w-full border-gray-300 rounded-md shadow-sm">
-                <option>Select Terminal</option>
+              <select name="arrivalTerminal" value={formData.arrivalTerminal} onChange={handleChange} className="bg-gray-600  mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                <option className='text-gray-600'>Select Terminal</option>
                 {/* Add terminal options here */}
               </select>
             </div>

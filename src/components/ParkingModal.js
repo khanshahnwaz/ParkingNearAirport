@@ -41,25 +41,25 @@ export default function ParkingModal({ data, onClose }) {
       <div className="fixed inset-0 flex items-center justify-center z-50">
         <div 
           ref={modalRef}
-          className="bg-white rounded-lg shadow-lg w-full md:w-[60vw]  h-[70vh] md:h-[60vh] flex relative"
+          className="bg-white rounded-lg shadow-lg w-full md:w-[60vw]  h-max md:h-[60vh] flex relative"
         >
           {/* Close Button */}
           <button
             onClick={onClose}
-            className="absolute top-3 right-3 text-gray-500 hover:text-gray-700"
+            className="absolute   right-3 text-gray-500 hover:text-gray-700"
           >
-            <X size={22} />
+            <X size={26} />
           </button>
 
           {/* Sidebar */}
-          <div className="w-1/4 border-r p-4 space-y-2 bg-gray-50 rounded-l-lg">
+          <div className="w-1/3 md:w-1/4 border-r p-4 space-y-2 bg-gray-50 rounded-l-lg">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 className={`block w-full text-left px-3 py-2 rounded-md transition-colors duration-200 ${
                   activeTab === tab.id
-                    ? "bg-yellow-200 font-medium text-blue-900"
+                    ? "bg-blue-800 font-medium text-white"
                     : "hover:bg-gray-100 text-gray-700"
                 }`}
               >
@@ -72,7 +72,7 @@ export default function ParkingModal({ data, onClose }) {
           <div className="flex-1 p-6 overflow-y-auto">
             {/* Price & Title */}
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-semibold">{data.name}</h2>
+              <h2 className="text-xl font-semibold text-gray-900">{data.name}</h2>
               <span className="text-2xl font-bold text-blue-900">
                 £{data.price}
               </span>
@@ -80,8 +80,8 @@ export default function ParkingModal({ data, onClose }) {
 
             {activeTab === "overview" && (
               <div>
-                <h3 className="font-semibold mb-2">{data.name}</h3>
-                <ul className="space-y-2 mb-4">
+                {/* <h3 className="font-semibold mb-2 text-gray-500">{data.name}</h3> */}
+                <ul className="space-y-2 mb-4 ">
                   {data.highlights?.map((h, i) => (
                     <li key={i} className="flex items-start gap-2">
                       <span className="bg-yellow-400 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">
@@ -96,12 +96,12 @@ export default function ParkingModal({ data, onClose }) {
                   ))}
                 </ul>
 
-                <h4 className="font-semibold mb-2">Features</h4>
+                <h4 className="font-semibold mb-2 text-gray-700">Features</h4>
                 <div className="grid grid-cols-2 gap-2">
                   {data.features?.map((f, i) => (
                     <div key={i} className="flex items-center gap-2 text-sm">
-                      <span className="text-yellow-500">✔</span>
-                      {f}
+                      <span className="text-blue-700">✔</span>
+                      <span className="text-gray-600">{f}</span>
                     </div>
                   ))}
                 </div>

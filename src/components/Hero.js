@@ -8,7 +8,7 @@ export default function Hero() {
         {/* Left: Text */}
         <div>
           <h1 className="text-4xl md:text-5xl font-bold leading-tight">
-            Airport Parking <span className="md:text-gray-400  text-gray-600">Made Simple</span>
+            <span className="text-gray-500">Airport Parking</span> <span className="  text-gray-700">Made Simple</span>
           </h1>
 
           <p className="mt-4 text-gray-700 text-lg">
