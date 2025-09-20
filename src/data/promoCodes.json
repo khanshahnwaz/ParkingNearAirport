@@ -1,5 +1,10 @@
 [
   {
+    "code": "SUMMER5",
+    "label": "SUMMER5 - 5% Off",
+    "discount": 5
+  },
+  {
     "code": "SAVE10",
     "label": "SAVE10 - 10% Off",
     "discount": 10

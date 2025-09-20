@@ -4,7 +4,7 @@
       "location":"Gatwick Airport(LGW)",
       "logo": "/quickpark.png",
       "reviews": 120,
-     "price": 59.85,
+     "price": 33.22,
       "icons": ["⏰", "📷", "✔", "❓", "🛡"],
       "features": [
         "CCTV Secure Compound",
@@ -26,9 +26,35 @@
       ]
     },
     {
-      "name": "QuickPark",
+      "name": "Parkway",
       "location":"Gatwick Airport(LGW)",
-      "logo": "/quickpark.png",
+      "logo": "/parkway.png",
+      "reviews": 95,
+     "price": 33.22,
+      "icons": ["⏰", "📷", "✔", "❓", "🛡"],
+      "features": [
+        "CCTV Secure Compound",
+        "All Inclusive Price",
+        "5-10 Minutes Airport Transfer",
+        "24 Hours Frequent Shuttles",
+        "No commercial vans & Minibus"
+      ],
+      "extraFeatures": [
+        "24hr Patrols",
+        "Fencing",
+        "Secure Barrier",
+        "Park Mark",
+        "BPA Member",
+        "CCTV",
+        "Security Lighting",
+        "Patrolled",
+        "Disability Friendly"
+      ]
+    },
+    {
+      "name": "FlyPark",
+      "location":"Gatwick Airport(LGW)",
+      "logo": "/flypark.png",
       "reviews": 120,
      "price": 59.85,
       "icons": ["⏰", "📷", "✔", "❓", "🛡"],
@@ -52,11 +78,37 @@
       ]
     },
     {
-      "name": "QuickPark",
+      "name": "Safe And Meet Greet Limited",
       "location":"Gatwick Airport(LGW)",
+      "logo": "/flypark.png",
+      "reviews": 0,
+     "price": 33,
+      "icons": ["⏰", "📷", "✔", "❓", "🛡"],
+      "features": [
+        "CCTV Secure Compound",
+        "All Inclusive Price",
+        "5-10 Minutes Airport Transfer",
+        "24 Hours Frequent Shuttles",
+        "No commercial vans & Minibus"
+      ],
+      "extraFeatures": [
+        "24hr Patrols",
+        "Fencing",
+        "Secure Barrier",
+        "Park Mark",
+        "BPA Member",
+        "CCTV",
+        "Security Lighting",
+        "Patrolled",
+        "Disability Friendly"
+      ]
+    },
+    {
+      "name": "QuickPark",
+      "location":"Heathrow Airport(LHR)",
       "logo": "/quickpark.png",
       "reviews": 120,
-     "price": 59.85,
+     "price": 33.22,
       "icons": ["⏰", "📷", "✔", "❓", "🛡"],
       "features": [
         "CCTV Secure Compound",
@@ -82,8 +134,165 @@
       "location":"Heathrow Airport(LHR)",
       "logo": "/parkway.png",
       "reviews": 95,
-      "price": 59.85,
-      "icons": ["⏰", "📷", "✔", "🔑", "❓"],
+     "price": 33.22,
+      "icons": ["⏰", "📷", "✔", "❓", "🛡"],
+      "features": [
+        "CCTV Secure Compound",
+        "All Inclusive Price",
+        "5-10 Minutes Airport Transfer",
+        "24 Hours Frequent Shuttles",
+        "No commercial vans & Minibus"
+      ],
+      "extraFeatures": [
+        "24hr Patrols",
+        "Fencing",
+        "Secure Barrier",
+        "Park Mark",
+        "BPA Member",
+        "CCTV",
+        "Security Lighting",
+        "Patrolled",
+        "Disability Friendly"
+      ]
+    },
+    {
+      "name": "iPark",
+      "location":"Heathrow Airport(LHR)",
+      "logo": "/ipark.png",
+      "reviews": 120,
+     "price": 59.85,
+      "icons": ["⏰", "📷", "✔", "❓", "🛡"],
+      "features": [
+        "CCTV Secure Compound",
+        "All Inclusive Price",
+        "5-10 Minutes Airport Transfer",
+        "24 Hours Frequent Shuttles",
+        "No commercial vans & Minibus"
+      ],
+      "extraFeatures": [
+        "24hr Patrols",
+        "Fencing",
+        "Secure Barrier",
+        "Park Mark",
+        "BPA Member",
+        "CCTV",
+        "Security Lighting",
+        "Patrolled",
+        "Disability Friendly"
+      ]
+    },
+    {
+      "name": "Safe And Meet Greet Limited",
+      "location":"Heathrow Airport(LHR)",
+      "logo": "/flypark.png",
+      "reviews": 0,
+     "price": 33,
+      "icons": ["⏰", "📷", "✔", "❓", "🛡"],
+      "features": [
+        "CCTV Secure Compound",
+        "All Inclusive Price",
+        "5-10 Minutes Airport Transfer",
+        "24 Hours Frequent Shuttles",
+        "No commercial vans & Minibus"
+      ],
+      "extraFeatures": [
+        "24hr Patrols",
+        "Fencing",
+        "Secure Barrier",
+        "Park Mark",
+        "BPA Member",
+        "CCTV",
+        "Security Lighting",
+        "Patrolled",
+        "Disability Friendly"
+      ]
+    },
+    {
+      "name": "QuickPark",
+      "location":"Manchester Airport(MAN)",
+      "logo": "/quickpark.png",
+      "reviews": 120,
+     "price": 33.22,
+      "icons": ["⏰", "📷", "✔", "❓", "🛡"],
+      "features": [
+        "CCTV Secure Compound",
+        "All Inclusive Price",
+        "5-10 Minutes Airport Transfer",
+        "24 Hours Frequent Shuttles",
+        "No commercial vans & Minibus"
+      ],
+      "extraFeatures": [
+        "24hr Patrols",
+        "Fencing",
+        "Secure Barrier",
+        "Park Mark",
+        "BPA Member",
+        "CCTV",
+        "Security Lighting",
+        "Patrolled",
+        "Disability Friendly"
+      ]
+    },
+    {
+      "name": "Parkway",
+      "location":"Manchester Airport(MAN)",
+      "logo": "/parkway.png",
+      "reviews": 95,
+     "price": 33.22,
+      "icons": ["⏰", "📷", "✔", "❓", "🛡"],
+      "features": [
+        "CCTV Secure Compound",
+        "All Inclusive Price",
+        "5-10 Minutes Airport Transfer",
+        "24 Hours Frequent Shuttles",
+        "No commercial vans & Minibus"
+      ],
+      "extraFeatures": [
+        "24hr Patrols",
+        "Fencing",
+        "Secure Barrier",
+        "Park Mark",
+        "BPA Member",
+        "CCTV",
+        "Security Lighting",
+        "Patrolled",
+        "Disability Friendly"
+      ]
+    },
+
+    {
+      "name": "QuickPark",
+      "location":"London Stansted Airport(STN)",
+      "logo": "/quickpark.png",
+      "reviews": 120,
+     "price": 33.22,
+      "icons": ["⏰", "📷", "✔", "❓", "🛡"],
+      "features": [
+        "CCTV Secure Compound",
+        "All Inclusive Price",
+        "5-10 Minutes Airport Transfer",
+        "24 Hours Frequent Shuttles",
+        "No commercial vans & Minibus"
+      ],
+      "extraFeatures": [
+        "24hr Patrols",
+        "Fencing",
+        "Secure Barrier",
+        "Park Mark",
+        "BPA Member",
+        "CCTV",
+        "Security Lighting",
+        "Patrolled",
+        "Disability Friendly"
+      ]
+    },
+    {
+      "name": "Safe And Meet Greet Limited",
+      "location":"London Stansted Airport(STN)",
+      "logo": "/flypark.png",
+      "reviews": 0,
+     "price": 33,
+      "icons": ["⏰", "📷", "✔", "❓", "🛡"],
       "features": [
         "CCTV Secure Compound",
         "All Inclusive Price",
@@ -103,4 +312,7 @@
         "Disability Friendly"
       ]
     }
+
+    
+    
 ]
