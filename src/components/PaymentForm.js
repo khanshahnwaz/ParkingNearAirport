@@ -27,7 +27,7 @@ export default function PaymentForm({ bookingSummary, onPrevious,total }) {
         key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID, // Use NEXT_PUBLIC for client-side keys
         amount: order.amount,
         currency: order.currency,
-        name: "Your Company Name",
+        name: "CompareParking4Me",
         description: "Booking Payment",
         order_id: order.id, // This is the real, server-generated order ID
         handler: function (paymentResponse) {
