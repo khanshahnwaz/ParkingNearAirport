@@ -44,7 +44,7 @@ export default function HowItWorks() {
         </div>
       </div>
       <div className="flex justify-center items-center py-12 px-4">
-      <div className="bg-gradient-to-r from-blue-900 to-white text-white rounded-2xl shadow-lg p-10 max-w-4xl w-full">
+      <div className="bg-blue-900 text-white rounded-2xl shadow-lg p-10 max-w-4xl w-full">
         <h2 className="text-3xl font-bold mb-4">
           Ready to Find Your Perfect Parking Spot?
         </h2>
@@ -52,9 +52,12 @@ export default function HowItWorks() {
           Join <span className="font-semibold">thousands</span> of happy travelers who have saved time and money on airport parking.
         </p>
         <div className="flex items-center space-x-4">
-          <button className="bg-white text-blue-700 px-5 py-2 rounded-lg font-semibold shadow hover:bg-gray-100 transition">
-            Compare Prices Now →
-          </button>
+          <button className="bg-white px-6 py-3 rounded-lg font-extrabold text-lg shadow-md hover:bg-blue-50 hover:shadow-lg transition transform hover:-translate-y-0.5 relative overflow-hidden">
+  <span className="bg-gradient-to-r from-blue-600 via-blue-400 to-blue-600 bg-clip-text text-transparent animate-shine">
+    Compare Prices Now →
+  </span>
+</button>
+
           <button className="bg-white/30 text-white px-5 py-2 rounded-lg font-semibold shadow cursor-not-allowed">
             Learn More
           </button>

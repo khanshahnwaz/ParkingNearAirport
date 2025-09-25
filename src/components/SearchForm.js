@@ -41,11 +41,11 @@ export default function SearchForm() {
 
 
   return (
-    <section className="bg-[#fdf8f2] py-6">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section className="bg-[#fdf8f2] py-6 ">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 shadow-2xl hover:shadow-[0_10px_25px_rgba(0,0,0,0.4)]">
         <form
           onSubmit={handleSubmit}
-          className="bg-transparent shadow-md rounded-xl flex flex-col md:flex-row items-stretch md:items-center p-4 gap-4"
+          className="bg-transparent md:h-32  rounded-xl flex flex-col md:flex-row items-stretch md:items-center p-4 gap-4"
         >
           {/* Location */}
           <HoverSelect

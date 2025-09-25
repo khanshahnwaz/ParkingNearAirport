@@ -2,8 +2,8 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="bg-[#fdf8f2] py-12">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+    <section className="bg-[#fdf8f2] py-5">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-y-2 gap-x-10  items-center">
         
         {/* Left: Text */}
         <div>
@@ -11,7 +11,7 @@ export default function Hero() {
             <span className="text-gray-500">Airport Parking</span> <span className="  text-gray-700">Made Simple</span>
           </h1>
 
-          <p className="mt-4 text-gray-700 text-lg">
+          <p className="mt-2 text-gray-700 text-lg">
             Airport Car Parking Near You - Get lowest price airport car parking near you. 
             Parking spots available near Heathrow, Gatwick, Luton and all major airports. 
             Pick up and drop facility available.

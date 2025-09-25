@@ -32,11 +32,11 @@ export default function WhyChooseUs() {
         <h2 className="text-gray-900 text-3xl md:text-4xl font-bold text-center mb-10">
           Why Choose Us
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-4 bg-white">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-4 ">
           {features.map((feature, idx) => (
             <div
               key={idx}
-              className=" rounded-2xl shadow-md p-6 text-center hover:shadow-lg transition"
+              className=" rounded-lg shadow-lg hover:shadow-xl transition-shadow  p-6 text-center bg-white"
             >
               <div className="flex justify-center mb-4">{feature.icon}</div>
               <h3 className="text-gray-900 text-lg font-semibold mb-2">{feature.title}</h3>
