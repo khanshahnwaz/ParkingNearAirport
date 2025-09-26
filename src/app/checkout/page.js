@@ -39,6 +39,7 @@ function CheckoutForm({currentStep,setCurrentStep}) {
     promoCode: "SUMMERS",
     discount: 3.15,
     total: 56.85,
+    cancellation:false
   };
 
   const finalBooking = Object.keys(booking).length > 0 ? booking : defaultBooking;
@@ -47,19 +48,21 @@ function CheckoutForm({currentStep,setCurrentStep}) {
 
   const handleNext = (stepData) => {
     setFormData(prev => ({ ...prev, ...stepData }));
+    // console.log("form at second step ",formData)
     setCurrentStep(prev => prev + 1);
   };
 
   const handlePrevious = () => {
     setCurrentStep(prev => prev - 1);
   };
+  // console.log("form data at first step",formData)
 
   const renderStep = () => {
     // You will need to create and import these components
     // for the other steps (FlightForm, VehicleForm, PaymentForm).
     switch (currentStep) {
       case 1:
-        return <ContactForm onNext={handleNext} />;
+        return <ContactForm onNext={handleNext}data={formData} />;
       case 2:
         return <FlightForm onNext={handleNext} onPrevious={handlePrevious} />;
       case 3:

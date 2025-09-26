@@ -3,10 +3,12 @@
 
 import { useState } from 'react';
 
-export default function ContactForm({ onNext }) {
+export default function ContactForm({ onNext,data }) {
+ 
   const [formData, setFormData] = useState({
     title: 'Mr', firstName: '', lastName: '', email: '', contact: '', people: 1, cancellation: false,
   });
+   
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -14,10 +16,11 @@ export default function ContactForm({ onNext }) {
       ...prev,
       [name]: type === 'checkbox' ? checked : value
     }));
+    // console.log("Form data ",formData)
   };
 
   const handleSubmit = (e) => {
-    console.log("first step")
+    // console.log("first step")
     e.preventDefault();
     // In a real app, you would validate the form data here
     onNext(formData);
@@ -64,7 +67,7 @@ export default function ContactForm({ onNext }) {
         <div className="flex justify-between items-center py-4 px-6 bg-blue-100 rounded-md">
           <label className="text-gray-700">Cancellation Coverage</label>
           <div className="flex items-center space-x-2">
-            <span className="text-sm font-semibold text-gray-700">£2.00</span>
+            <span className="text-sm font-semibold text-gray-700">$2.00</span>
             <input type="checkbox" name="cancellation" checked={formData.cancellation} onChange={handleChange} className="h-6 w-12 rounded-full appearance-none bg-gray-200 checked:bg-blue-600 transition duration-200 cursor-pointer relative after:absolute after:top-0.5 after:left-0.5 after:h-5 after:w-5 after:rounded-full after:bg-white after:shadow after:transition-all after:duration-200 checked:after:left-[1.6rem]" />
           </div>
         </div>

@@ -1,55 +1,34 @@
-// components/PaymentForm.jsx
 'use client';
 
-export default function PaymentForm({ bookingSummary, onPrevious,total }) {
-  const { name, email, contact } = bookingSummary;
+import { useAuth } from "@/context/AuthContext";
+import { useState } from "react";
 
+export default function PaymentForm({ bookingSummary, onPrevious, total }) {
+  const { user } = useAuth();
+  const[loading,setLoading]=useState(false);
   const handleCompleteBooking = async () => {
     try {
-      console.log("Amount to be paid",total,"and key is",process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID)
-      // 1. Call your backend to create a Razorpay order
-      const response = await fetch('/api/razorpay', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ amount: total }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to create Razorpay order');
+      if (!user) {
+        document.getElementById("login").click();
+        return;
       }
+       setLoading(true);
+      const response = await fetch("/api/create-checkout-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({amount: total, bookingSummary }),
+      });
+      setLoading(false);
+const data = await response.json();
 
-      const order = await response.json();
-
-      // 2. Use the real order ID from the backend response
-      const options = {
-        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID, // Use NEXT_PUBLIC for client-side keys
-        amount: order.amount,
-        currency: order.currency,
-        name: "CompareParking4Me",
-        description: "Booking Payment",
-        order_id: order.id, // This is the real, server-generated order ID
-        handler: function (paymentResponse) {
-          alert(`Payment successful! Payment ID: ${paymentResponse.razorpay_payment_id}`);
-          // Send paymentResponse to your backend for verification
-        },
-        prefill: {
-          name: name,
-          email: email,
-          contact: contact,
-        },
-        theme: {
-          color: "#1a237e"
-        }
-      };
-
-      const rzp1 = new window.Razorpay(options);
-      rzp1.open();
-
+    if (data.url) {
+      window.location.href = data.url; //  Redirect to Stripe
+    } else {
+      alert("Failed to redirect to payment");
+    }
     } catch (error) {
-      console.error('Payment failed:', error);
-      alert('Payment failed. Please try again.');
+      console.error("Payment failed:", error);
+      alert("Payment failed. Please try again.");
     }
   };
 
@@ -63,20 +42,28 @@ export default function PaymentForm({ bookingSummary, onPrevious,total }) {
 
       <div className="bg-[#fdf8f2] rounded-lg p-6 space-y-4">
         <h3 className="font-semibold text-gray-800">Booking Summary</h3>
-        <p ><span className="font-medium text-gray-600">Name:</span> <span className="text-gray-600">{`${bookingSummary.title} ${bookingSummary.firstName} ${bookingSummary.lastName}`}</span></p>
-        <p><span className="font-medium text-gray-600">Email:</span> <span className="text-gray-600">{bookingSummary.email}</span></p>
-        <p><span className="font-medium text-gray-600">Contact:</span> <span className="text-gray-600">{bookingSummary.contact}</span></p>
-        <p><span className="font-medium text-gray-600">People:</span> <span className="text-gray-600">{bookingSummary.people}</span></p>
-        <p><span className="font-medium text-gray-600">Departure:</span> <span className="text-gray-600">{bookingSummary.departureTerminal || 'N/A'}</span></p>
-        <p><span className="font-medium text-gray-600">Arrival:</span> <span className="text-gray-600">{bookingSummary.arrivalTerminal || 'N/A'}</span></p>
+        <p><span className="font-medium text-gray-600">Name:</span> {`${bookingSummary.title} ${bookingSummary.firstName} ${bookingSummary.lastName}`}</p>
+        <p><span className="font-medium text-gray-600">Email:</span> {bookingSummary.email}</p>
+        <p><span className="font-medium text-gray-600">Contact:</span> {bookingSummary.contact}</p>
+        <p><span className="font-medium text-gray-600">People:</span> {bookingSummary.people}</p>
+        <p><span className="font-medium text-gray-600">Departure:</span> {bookingSummary.departureTerminal || "N/A"}</p>
+        <p><span className="font-medium text-gray-600">Arrival:</span> {bookingSummary.arrivalTerminal || "N/A"}</p>
       </div>
 
       <div className="flex justify-between mt-6 px-6">
-        <button type="button" onClick={onPrevious} className="bg-gray-200 text-gray-800 font-semibold py-2 px-6 rounded-lg hover:bg-gray-300 transition-colors">
+        <button
+          type="button"
+          onClick={onPrevious}
+          className="bg-gray-200 text-gray-800 font-semibold py-2 px-6 rounded-lg hover:bg-gray-300 transition-colors"
+        >
           ← Previous
         </button>
-        <button onClick={handleCompleteBooking} className="bg-blue-800 text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-900 transition-colors">
-          Complete Booking
+        <button
+          onClick={handleCompleteBooking}
+          className="bg-blue-800 text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-900 transition-colors cursor-pointer hover:opacity-70"
+        >
+
+         {loading?"Payment Processing...":"Complete Booking"} 
         </button>
       </div>
     </div>

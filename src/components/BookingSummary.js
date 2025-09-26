@@ -2,9 +2,9 @@
 export default function BookingSummary({ booking }) {
   const {
     name, location, country, type, dropoff, pickup, duration, base,
-    promoCode,discount, discountPercent, total,
+    promoCode,discount, discountPercent, total,cancellation
   } = booking;
-  console.log("discount",discount)
+  // console.log("Booking summary ",booking)
 
   return (
     <div className="bg-[#fdf8f2] rounded-lg shadow-md p-6 w-full md:w-1/3">
@@ -61,7 +61,7 @@ export default function BookingSummary({ booking }) {
         </div>
         <div className="flex justify-between ">
           <p className="text-gray-800">Base Amount:</p>
-          <p className="text-gray-600">£{base.toFixed(2)}</p>
+          <p className="text-gray-600">${base.toFixed(2)}</p>
         </div>
         {promoCode && (
           <div className="bg-blue-100 p-4 rounded-lg ">
@@ -72,10 +72,11 @@ export default function BookingSummary({ booking }) {
             <div className="text-xs text-gray-500">
               <p className="text-gray-700">Discount: {discountPercent}% off</p>
               <p className="text-gray-700">Valid until: 3/6/2026</p>
+              {cancellation?<p className="text-gray-700">Cancellation coverage: <span className="float-right text-red-600">$2</span></p>:null}
             </div>
             <div className="flex justify-between text-green-600">
               <p>Discount ({promoCode}):</p>
-              <p>-£{discount?.toFixed(2)}</p>
+              <p>-${discount?.toFixed(2)}</p>
             </div>
           </div>
         )}
@@ -83,7 +84,7 @@ export default function BookingSummary({ booking }) {
 
       <div className="flex justify-between items-center text-lg font-bold mt-4 border-t pt-4">
         <p className="text-gray-900">Total Amount:</p>
-        <p className="text-gray-700">£{total}</p>
+        <p className="text-gray-700">${cancellation?parseFloat(total)+2:total}</p>
       </div>
     </div>
   );

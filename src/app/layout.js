@@ -1,6 +1,7 @@
 import Footer from "@/components/Footer";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import { AuthProvider } from "@/context/AuthContext";
 
 export const metadata = {
   title: "Parking App",
@@ -14,9 +15,11 @@ export default function RootLayout({ children }) {
         <script src="https://checkout.razorpay.com/v1/checkout.js" async></script>
       
       <body className="bg-[#fdf8f2]">
+        <AuthProvider>
         <Navbar />
         {children}
         <Footer/>
+        </AuthProvider>
       </body>
       
     </html>
