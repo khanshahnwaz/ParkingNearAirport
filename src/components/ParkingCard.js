@@ -50,7 +50,7 @@ export default function ParkingCard({ data, promo,dates }) {
 
         {/* Logo */}
         <div className="flex justify-center py-4">
-          <img src={data.logo} alt={data.name} className="h-12" />
+          <img src={`${data.logo?data.logo:'/logo.png'}`} alt={data.name} className="h-12" />
         </div>
 
         {/* Icons row */}

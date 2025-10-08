@@ -5,37 +5,40 @@ import ParkingCard from "./ParkingCard";
 import { useSearchParams, useRouter } from "next/navigation";
 import { FaArrowLeft, FaRedoAlt, FaFilter } from "react-icons/fa";
 import { FiMapPin, FiCalendar } from "react-icons/fi";
-
-import parkingData from "../data/parkingData.json";
-
+import { useAuth } from "@/context/AuthContext";
+import { Loader } from "lucide-react";
 export default function SearchResultsPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
+
+  // 1. Fetch data and state from AuthContext
+  const { parkingOptions, isDataLoading, dataError } = useAuth();
 
   // read query params filled by your SearchForm when user clicks Search
   const location = searchParams?.get("location") || "";
   const start = searchParams?.get("start") || "";
   const end = searchParams?.get("end") || "";
   let promo = searchParams?.get("promo") || "";
-if (promo !== "") {
-  try {
-    promo = JSON.parse(promo); // convert back into object
-  } catch (e) {
-    console.error("Invalid promo JSON", e);
+  if (promo !== "") {
+    try {
+      promo = JSON.parse(promo); // convert back into object
+    } catch (e) {
+      console.error("Invalid promo JSON", e);
+      promo = null;
+    }
+  } else {
     promo = null;
   }
-} else {
-  promo = null;
-}
-
 
   const [sort, setSort] = useState("Price (Low to High)");
 
-  // filter + sort (non-mutating)
+  // 2. Filter + Sort Logic (now using parkingOptions from context)
   const filteredLots = useMemo(() => {
-    if (!location) return [];
+    // If data is loading or the location is empty, return an empty list immediately
+    if (isDataLoading || !location) return [];
 
-    let list = parkingData.filter((p) => p.location === location);
+    // Filter by location
+    let list = parkingOptions.filter((p) => p.location === location);
 
     // clone and sort
     const sorted = [...list];
@@ -48,7 +51,7 @@ if (promo !== "") {
     }
     // Distance sort would require distance data; left as-is.
     return sorted;
-  }, [location, sort]);
+  }, [location, sort, isDataLoading, parkingOptions]); // Depend on parkingOptions
 
   const count = filteredLots.length;
 
@@ -71,12 +74,39 @@ if (promo !== "") {
     if (location) qs.set("location", location);
     if (start) qs.set("start", start);
     if (end) qs.set("end", end);
-    if (promo) qs.set("promo", promo);
+    // The promo query param is expected to be a string, so we stringify it back
+    if (promo) qs.set("promo", JSON.stringify(promo));
     router.push("/?" + qs.toString());
   };
+  
+  // --- Loading and Error Handlers ---
+  if (isDataLoading) {
+    return (
+      <div className="bg-[#fdf8f2] min-h-screen py-20 flex items-center justify-center">
+        <p className="text-xl font-medium text-blue-600 animate-pulse">
+          Loading available parking spots and promotions...
+        </p>
+        <Loader/>
+      </div>
+    );
+  }
+
+  if (dataError) {
+    return (
+      <div className="bg-[#fdf8f2] min-h-screen py-20 flex items-center justify-center">
+        <div className="text-center p-8 bg-red-50 border border-red-200 rounded-lg shadow-lg">
+            <h3 className="text-xl font-semibold text-red-600 mb-2">Data Load Error</h3>
+            <p className="text-gray-700">We could not connect to the parking data server.</p>
+            <p className="text-sm text-red-500 mt-1">{dataError}</p>
+        </div>
+      </div>
+    );
+  }
+  // --- End Handlers ---
+
 
   return (
-    <div className="bg-[#fdf8f2] min-h-screen  py-10 px-5 ">
+    <div className="bg-[#fdf8f2] min-h-screen py-10 px-5 ">
       <div className="">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-8">
           {/* Header */}
@@ -176,16 +206,18 @@ if (promo !== "") {
 
       {/* Results grid */}
       <div className="md:max-w-7xl mx-auto px-6 lg:px-8 mt-8">
-        {count === 0 ? (
+        {count === 0 && location ? (
           <div className="text-center text-gray-600 py-20">
-            {location
-              ? `No parking lots available for ${location}.`
-              : "Please enter a search to see results."}
+            {`No parking lots available for ${location}.`}
           </div>
+        ) : count === 0 && !location ? (
+             <div className="text-center text-gray-600 py-20">
+              Please enter a search to see results.
+            </div>
         ) : (
           <div className="grid md:grid-cols-2 gap-6">
-            {filteredLots.map((lot,ind) => (
-              <ParkingCard key={ind} data={lot} promo={promo} dates={{"start":start,"end":end}} />
+            {filteredLots.map((lot, ind) => (
+              <ParkingCard key={lot.id || ind} data={lot} promo={promo} dates={{"start":start,"end":end}} />
             ))}
           </div>
         )}

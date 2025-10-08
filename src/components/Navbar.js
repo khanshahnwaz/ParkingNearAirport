@@ -20,6 +20,7 @@ export default function Navbar() {
     { href: "/about", label: "About Us" },
     { href: "/faqs", label: "FAQs" },
     { href: "/contact", label: "Contact" },
+    {href:"/admin",label:"Admin"}
   ];
 
   return (
