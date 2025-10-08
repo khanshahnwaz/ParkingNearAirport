@@ -7,7 +7,7 @@ export async function POST(req) {
   try {
     const body = await req.json();
 
-    console.log("Incoming body:", body); // debug log
+    // console.log("Incoming body:", body); // debug log
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],

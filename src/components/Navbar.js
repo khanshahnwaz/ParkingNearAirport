@@ -73,6 +73,7 @@ export default function Navbar() {
                       setAuthMode("login");
                       setIsOpenForm(true);
                     }}
+                    id="login"
                     className="px-4 py-2 rounded-md hover:bg-gray-700"
                   >
                     Sign In
@@ -155,6 +156,7 @@ export default function Navbar() {
                     setIsOpen(false);
                   }}
                   className="block w-full text-left px-4 py-2 rounded-md hover:bg-gray-700"
+                  id="login"
                 >
                   Sign In
                 </button>

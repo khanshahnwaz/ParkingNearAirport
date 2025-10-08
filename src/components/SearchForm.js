@@ -94,7 +94,7 @@ export default function SearchForm() {
             disabled={!isFormValid}
             className={`px-6 py-2 rounded-lg bg-blue-900 text-white ${
               isFormValid
-                ? "cursor-pointer hover:bg-blue-900"
+                ? "cursor-pointer hover:bg-blue-900 hover:opacity-70"
                 : "cursor-not-allowed opacity-60"
             }`}
           >

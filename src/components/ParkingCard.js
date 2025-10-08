@@ -93,14 +93,14 @@ export default function ParkingCard({ data, promo,dates }) {
         {/* Actions */}
         <div className="flex justify-between gap-3 mt-auto">
           <button
-            className="flex-1 bg-blue-900 text-white py-2 rounded-md hover:bg-blue-800"
+            className="cursor-pointer hover:opacity-70 flex-1 bg-blue-900 text-white py-2 rounded-md hover:bg-blue-800"
             onClick={handleBookNow}
           >
             Book Now
           </button>
           <button
             onClick={() => setOpen(true)}
-            className="text-gray-700 flex-1 border border-gray-400 py-2 rounded-md hover:bg-gray-100"
+            className="cursor-pointer hover:opacity-70 text-gray-700 flex-1 border border-gray-400 py-2 rounded-md hover:bg-gray-100"
           >
             More Info
           </button>

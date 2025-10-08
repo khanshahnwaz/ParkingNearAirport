@@ -1,14 +1,19 @@
 // components/ContactForm.jsx
 'use client';
 
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 
 export default function ContactForm({ onNext,data }) {
  
   const [formData, setFormData] = useState({
-    title: 'Mr', firstName: '', lastName: '', email: '', contact: '', people: 1, cancellation: false,
+    title: 'Mr', firstName: '', lastName: '', email: '', contact: '', vehicle: 1, cancellation: false,
   });
-   
+   // whenever `data` comes from parent, pre-fill form
+  useEffect(() => {
+    if (data) {
+      setFormData(prev => ({ ...prev, ...data }));
+    }
+  }, [data]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -16,11 +21,12 @@ export default function ContactForm({ onNext,data }) {
       ...prev,
       [name]: type === 'checkbox' ? checked : value
     }));
+    
     // console.log("Form data ",formData)
   };
 
   const handleSubmit = (e) => {
-    // console.log("first step")
+    console.log("first step",formData)
     e.preventDefault();
     // In a real app, you would validate the form data here
     onNext(formData);
@@ -60,8 +66,8 @@ export default function ContactForm({ onNext,data }) {
             <input type="tel" name="contact" value={formData.contact} onChange={handleChange} required className="text-gray-600 py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">People*</label>
-            <input type="number" name="people" value={formData.people} onChange={handleChange} required className="text-gray-600 py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
+            <label className="block text-sm font-medium text-gray-700">Number of vehicles*</label>
+            <input type="number" min={1} name="vehicle" value={formData.vehicle} onChange={handleChange} required className="text-gray-600 py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
           </div>
         </div>
         <div className="flex justify-between items-center py-4 px-6 bg-blue-100 rounded-md">
@@ -72,7 +78,7 @@ export default function ContactForm({ onNext,data }) {
           </div>
         </div>
         <div className="flex justify-end mt-4">
-          <button type="submit" className="bg-blue-800 text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-900 transition-colors">
+          <button type="submit" className="bg-blue-800 cursor-pointer text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-900 transition-colors">
             Next →
           </button>
         </div>

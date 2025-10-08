@@ -6,6 +6,7 @@ const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
+  const[paymentReceipt,setPaymentReceipt]=useState(null);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -23,7 +24,7 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout,paymentReceipt,setPaymentReceipt }}>
       {children}
     </AuthContext.Provider>
   );

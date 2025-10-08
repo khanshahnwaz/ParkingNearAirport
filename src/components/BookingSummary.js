@@ -2,7 +2,7 @@
 export default function BookingSummary({ booking }) {
   const {
     name, location, country, type, dropoff, pickup, duration, base,
-    promoCode,discount, discountPercent, total,cancellation
+    promoCode,discount, discountPercent, total,cancellation,vehicle
   } = booking;
   // console.log("Booking summary ",booking)
 
@@ -84,7 +84,7 @@ export default function BookingSummary({ booking }) {
 
       <div className="flex justify-between items-center text-lg font-bold mt-4 border-t pt-4">
         <p className="text-gray-900">Total Amount:</p>
-        <p className="text-gray-700">${cancellation?parseFloat(total)+2:total}</p>
+        <p className="text-gray-700">${cancellation?((vehicle*parseFloat(total))+2).toFixed(2):vehicle?vehicle*parseFloat(total):parseFloat(total)}</p>
       </div>
     </div>
   );

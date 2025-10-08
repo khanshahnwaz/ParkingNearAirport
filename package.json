@@ -9,7 +9,10 @@
     "export": "next export"
   },
   "dependencies": {
+    "@react-oauth/google": "^0.12.2",
+    "@stripe/stripe-js": "^7.9.0",
     "framer-motion": "^12.23.21",
+    "jwt-decode": "^4.0.0",
     "lucide-react": "^0.544.0",
     "next": "15.5.3",
     "razorpay": "^2.9.6",
