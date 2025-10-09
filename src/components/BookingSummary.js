@@ -1,10 +1,24 @@
-// components/BookingSummary.jsx
 export default function BookingSummary({ booking }) {
   const {
-    name, location, country, type, dropoff, pickup, duration, base,
-    promoCode,discount, discountPercent, total,cancellation,vehicle
+    name, location, country, type,
+    dropoff, pickup, duration, base,
+    promoCode, discount, discountPercent,
+    cancellation, vehicle
   } = booking;
-  // console.log("Booking summary ",booking)
+
+  // Safely convert to numbers
+const days = parseInt(duration) || 0;
+const basePrice = parseFloat(base) || 0;
+const vehicleCount = parseInt(vehicle) || 1;
+const discountValue = parseFloat(discount) || 0;
+
+  // ✅ Dynamic Calculations for Total
+  const baseTotal = basePrice * days;                 // Base price * number of days
+  const vehicleTotal = baseTotal * vehicleCount;          // Multiply by number of vehicles
+  const discountedTotal = vehicleTotal - (discountValue || 0);  // Apply discount if exists
+  const finalTotal = cancellation ? discountedTotal + 2 : discountedTotal; // Add cancellation fee
+
+  console.log("final amount",finalTotal)
 
   return (
     <div className="bg-[#fdf8f2] rounded-lg shadow-md p-6 w-full md:w-1/3">
@@ -49,6 +63,18 @@ export default function BookingSummary({ booking }) {
           </svg>
           <span className="font-medium text-blue-800">DURATION:</span>
           <span className="text-gray-600">{duration} days</span>
+
+          
+        </p>
+
+        <p className="flex items-center space-x-2">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span className="font-medium text-blue-800">Vehicles:</span>
+          <span className="text-gray-600">{vehicle?vehicle:1}</span>
+
+          
         </p>
       </div>
 
@@ -72,7 +98,7 @@ export default function BookingSummary({ booking }) {
             <div className="text-xs text-gray-500">
               <p className="text-gray-700">Discount: {discountPercent}% off</p>
               <p className="text-gray-700">Valid until: 3/6/2026</p>
-              {cancellation?<p className="text-gray-700">Cancellation coverage: <span className="float-right text-red-600">€2</span></p>:null}
+              {cancellation && <p className="text-gray-700">Cancellation coverage: <span className="float-right text-red-600">€2</span></p>}
             </div>
             <div className="flex justify-between text-green-600">
               <p>Discount ({promoCode}):</p>
@@ -82,9 +108,10 @@ export default function BookingSummary({ booking }) {
         )}
       </div>
 
+      {/* ✅ FINAL TOTAL DISPLAY */}
       <div className="flex justify-between items-center text-lg font-bold mt-4 border-t pt-4">
         <p className="text-gray-900">Total Amount:</p>
-        <p className="text-gray-700">€{cancellation?((vehicle*parseFloat(total))+2).toFixed(2):vehicle?vehicle*parseFloat(total):parseFloat(total)}</p>
+        <p className="text-gray-700">€{finalTotal.toFixed(2)}</p>
       </div>
     </div>
   );

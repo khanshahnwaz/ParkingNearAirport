@@ -1,9 +1,10 @@
 "use client";
+
+import { Suspense, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-import { useEffect } from "react";
 import { useAuth } from "@/context/AuthContext";
 
-export default function PaymentSuccess() {
+function PaymentSuccessContent() {
   const params = useSearchParams();
   const sessionId = params.get("session_id");
   const { paymentReceipt, user } = useAuth();
@@ -52,5 +53,19 @@ export default function PaymentSuccess() {
         You will receive a confirmation email shortly.
       </p>
     </div>
+  );
+}
+
+export default function PaymentSuccess() {
+  return (
+    <Suspense
+      fallback={
+        <div className="p-10 text-center text-gray-600">
+          Processing your payment...
+        </div>
+      }
+    >
+      <PaymentSuccessContent />
+    </Suspense>
   );
 }

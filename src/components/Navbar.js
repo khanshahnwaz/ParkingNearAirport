@@ -38,6 +38,7 @@ export default function Navbar() {
             {/* Desktop Menu */}
             <div className="hidden md:flex space-x-6">
               {navLinks.map((link) => (
+                link.label!="Admin"?
                 <Link
                   key={link.href}
                   href={link.href}
@@ -48,7 +49,17 @@ export default function Navbar() {
                   }`}
                 >
                   {link.label}
-                </Link>
+                </Link>:user?<Link
+                  key={link.href}
+                  href={link.href}
+                  className={`transition-colors duration-200 ${
+                    pathname === link.href
+                      ? "text-blue-800 font-semibold"
+                      : "hover:text-blue-600"
+                  }`}
+                >
+                  {link.label}
+                </Link>:null
               ))}
             </div>
 

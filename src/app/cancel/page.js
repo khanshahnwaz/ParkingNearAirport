@@ -1,9 +1,10 @@
 "use client";
+
+import { Suspense, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-import { useEffect } from "react";
 import { useAuth } from "@/context/AuthContext";
 
-export default function PaymentFailed() {
+function PaymentFailedContent() {
   const params = useSearchParams();
   const sessionId = params.get("session_id");
   const { paymentReceipt, user } = useAuth();
@@ -17,7 +18,7 @@ export default function PaymentFailed() {
           ? paymentReceipt.vehicle * parseFloat(paymentReceipt.total) + 2
           : parseInt(paymentReceipt.vehicle) * parseFloat(paymentReceipt.total);
 
-        await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/create-order.php`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/create-order.php`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -29,8 +30,12 @@ export default function PaymentFailed() {
             bookingSummary: paymentReceipt,
           }),
         });
+
+        if (!res.ok) {
+          console.error("❌ Failed to record failed payment:", await res.text());
+        }
       } catch (err) {
-        console.error("Error saving failed order:", err);
+        console.error("🔥 Error saving failed order:", err);
       }
     };
 
@@ -44,5 +49,13 @@ export default function PaymentFailed() {
         Your booking could not be completed. Please try again.
       </p>
     </div>
+  );
+}
+
+export default function PaymentFailed() {
+  return (
+    <Suspense fallback={<div className="text-center p-10 text-gray-500">Loading...</div>}>
+      <PaymentFailedContent />
+    </Suspense>
   );
 }
