@@ -6,14 +6,14 @@ import { motion } from 'framer-motion';
 import UserManager from '@/components/UserManager';
 import PromocodeManager from '@/components/PromocodeManager';
 import ParkingOptionManager from '@/components/ParkingOptionManager';
-// 1. IMPORT THE NEW MANAGER
 import GrandDiscountManager from '@/components/GrandDiscountManager'; 
+import OrderManager from '@/components/OrderManager'; // 👈 NEW IMPORT
 import Loader from "@/components/Loader"
 import { apiFetch } from '@/utils/config'; // Relative import for the utility file
 
 const AdminDashboard = () => {
-    // Add 'discount' as a possible tab
-    const [activeTab, setActiveTab] = useState('users'); // Set discount as default tab for visibility
+    // Set 'orders' as a possible tab
+    const [activeTab, setActiveTab] = useState('orders'); // 👈 Set default to orders
     const [users, setUsers] = useState([]);
     const [promocodes, setPromocodes] = useState([]);
     const [parkingOptions, setParkingOptions] = useState([]);
@@ -23,8 +23,6 @@ const AdminDashboard = () => {
     // Fetch data functions
     const fetchData = async (endpoint, setter) => {
         try {
-            // Note: apiFetch assumes POST by default, ensure your fetching functions are correct
-            // For general data fetching in admin, we assume POST is the standard
             const data = await apiFetch(endpoint, {});
             setter(data);
             return data;
@@ -62,16 +60,15 @@ const AdminDashboard = () => {
         }`;
 
     const renderContent = useMemo(() => {
-        // 3. ADD THE DISCOUNT MANAGER TO RENDER CONTENT
-          if (activeTab === 'users') {
+        if (activeTab === 'orders') {
+            return <OrderManager />; // 👈 NEW CONTENT
+        } else if (activeTab === 'users') {
             return <UserManager users={users} />;
         } else if (activeTab === 'promocodes') {
             return <PromocodeManager promocodes={promocodes} fetchPromocodes={fetchPromocodes} />;
         } else if (activeTab === 'parking') {
             return <ParkingOptionManager parkingOptions={parkingOptions} fetchParkingOptions={fetchParkingOptions} />;
-        }
-        else if (activeTab === 'discount') {
-            // The discount manager handles its own fetching
+        } else if (activeTab === 'discount') {
             return <GrandDiscountManager />;
         }
         return null;
@@ -79,9 +76,7 @@ const AdminDashboard = () => {
 
 
     if (isLoading) {
-        return (
-           <Loader/>
-        );
+        return <Loader/>;
     }
     
     return (
@@ -100,8 +95,12 @@ const AdminDashboard = () => {
             <div className="max-w-7xl mx-auto">
                 {/* Tab Navigation */}
                 <div className="flex border-b border-gray-200">
-                    {/* 2. ADD THE NEW DISCOUNT TAB */}
-                    
+                    <button 
+                        onClick={() => setActiveTab('orders')} // 👈 NEW TAB
+                        className={tabClasses('orders')}
+                    >
+                        Order Management
+                    </button>
                     <button 
                         onClick={() => setActiveTab('users')} 
                         className={tabClasses('users')}

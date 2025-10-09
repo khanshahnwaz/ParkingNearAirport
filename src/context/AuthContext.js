@@ -140,7 +140,8 @@ export function AuthProvider({ children }) {
                 dataError,
 
                 // New Discount Variable 👈 EXPOSED
-                grandDiscount 
+                grandDiscount,
+                setGrandDiscount 
             }}
         >
             {children}

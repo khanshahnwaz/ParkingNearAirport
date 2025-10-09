@@ -52,8 +52,8 @@ export default function ContactForm({ onNext,data }) {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700">Last Name*</label>
-            <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required className="text-gray-600 py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
+            <label className="block text-sm font-medium text-gray-700">Last Name</label>
+            <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} className="text-gray-600 py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">Email*</label>
@@ -62,18 +62,18 @@ export default function ContactForm({ onNext,data }) {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700">Contact Number* (11 digits)</label>
-            <input type="tel" name="contact" value={formData.contact} onChange={handleChange} required className="text-gray-600 py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
+            <label className="block text-sm font-medium text-gray-700">Contact Number (11 digits)</label>
+            <input type="tel" name="contact" value={formData.contact} onChange={handleChange} className="text-gray-600 py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Number of vehicles*</label>
+            <label className="block text-sm font-medium text-gray-700">Number of vehicles</label>
             <input type="number" min={1} name="vehicle" value={formData.vehicle} onChange={handleChange} required className="text-gray-600 py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
           </div>
         </div>
         <div className="flex justify-between items-center py-4 px-6 bg-blue-100 rounded-md">
           <label className="text-gray-700">Cancellation Coverage</label>
           <div className="flex items-center space-x-2">
-            <span className="text-sm font-semibold text-gray-700">$2.00</span>
+            <span className="text-sm font-semibold text-gray-700">£2.00</span>
             <input type="checkbox" name="cancellation" checked={formData.cancellation} onChange={handleChange} className="h-6 w-12 rounded-full appearance-none bg-gray-200 checked:bg-blue-600 transition duration-200 cursor-pointer relative after:absolute after:top-0.5 after:left-0.5 after:h-5 after:w-5 after:rounded-full after:bg-white after:shadow after:transition-all after:duration-200 checked:after:left-[1.6rem]" />
           </div>
         </div>

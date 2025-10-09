@@ -68,7 +68,7 @@ function CheckoutForm({currentStep,setCurrentStep}) {
       case 3:
         return <VehicleForm onNext={handleNext} onPrevious={handlePrevious} data={formData} />;
       case 4:
-        return <PaymentForm bookingSummary={formData} total={finalBooking.total} onPrevious={handlePrevious} onCompleteBooking={() => {alert("Boking completed check console for data"),console.log('Booking completed',formData)}} />;
+        return <PaymentForm bookingSummary={formData} total={finalBooking} onPrevious={handlePrevious} onCompleteBooking={() => {alert("Boking completed check console for data"),console.log('Booking completed',formData)}} />;
       default:
         return <ContactForm onNext={handleNext} />;
     }

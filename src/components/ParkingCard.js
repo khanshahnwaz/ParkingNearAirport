@@ -13,6 +13,10 @@ export default function ParkingCard({ data, promo,dates }) {
     ? (data.price - (data.price * discount) / 100).toFixed(2)
     : data.price;
 
+
+    const diffTime = Math.abs(new Date(dates.end) - new Date(dates.start));
+const count = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
   const handleBookNow = () => {
     // Construct the query string with all necessary booking details
     const bookingDetails = {
@@ -23,7 +27,7 @@ export default function ParkingCard({ data, promo,dates }) {
       base: data.price,
       dropoff:dates.start,
       pickup:dates.end,
-      duration:new Date(dates.end).getDate()-new Date(dates.start).getDate()+1,
+      duration:count,
       total: discountedPrice,
       promoCode: promo?.code || "",
       discount:data.price-discountedPrice,

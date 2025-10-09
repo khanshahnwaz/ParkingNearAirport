@@ -10,7 +10,7 @@ const API_ENDPOINT = 'grand-discount-api.php'; // Using the action-based file
 
 const GrandDiscountManager = () => {
     // Get the globally shared discount value from context
-    const { grandDiscount } = useAuth();
+    const { grandDiscount,setGrandDiscount } = useAuth();
 
     // State for the value currently being edited in the input field
     const [newDiscount, setNewDiscount] = useState('');
@@ -20,13 +20,22 @@ const GrandDiscountManager = () => {
     const [statusMessage, setStatusMessage] = useState({ text: '', type: '' });
 
     // Sync global discount to local state for display and input initialization
-    useEffect(() => {
-        if (grandDiscount !== null) {
-            // Set both the displayed current discount and the input field value
-            // We use toFixed(2) to ensure decimal format in the input
-            setNewDiscount(grandDiscount.toFixed(2));
+  useEffect(() => {
+    // 1. Check if the value is NOT null AND is a finite number
+    // We use typeof to be strict, and isNaN to handle cases like Number("abc").
+    const isNumeric = typeof grandDiscount === 'number' && isFinite(grandDiscount);
+
+    if (isNumeric) {
+        // We use the numeric value to set the input field
+        setNewDiscount(grandDiscount.toFixed(2));
+    } else if (grandDiscount !== null && grandDiscount !== undefined) {
+        // Fallback: If it's a string that needs parsing (e.g., "25.50" from context initial load)
+        const parsedValue = parseFloat(grandDiscount);
+        if (!isNaN(parsedValue)) {
+            setNewDiscount(parsedValue.toFixed(2));
         }
-    }, [grandDiscount]);
+    }
+}, [grandDiscount]);
 
     /**
      * Helper to trigger a global data refresh. 
@@ -73,6 +82,7 @@ const GrandDiscountManager = () => {
             // refreshGlobalDiscount(); 
             
             // Since we don't have a global refresh, rely on success message
+            setGrandDiscount(parseFloat(value).toFixed(2));
             window.alert(`Discount successfully updated to ${value.toFixed(2)}!`);
             setStatusMessage({ text: `Discount successfully updated to ${value.toFixed(2)}!`, type: 'success' });
             
@@ -98,6 +108,9 @@ const GrandDiscountManager = () => {
             await apiFetch(API_ENDPOINT, payload); 
             
             // refreshGlobalDiscount();
+                        setGrandDiscount(0.00);
+
+
             window.alert('Discount successfully deleted (now 0). Please refresh your global context manually.');
             setStatusMessage({ text: 'Discount successfully deleted.', type: 'success' });
         } catch (err) {
@@ -121,8 +134,17 @@ const GrandDiscountManager = () => {
         return 'hidden';
     };
 
-    // Using grandDiscount from context for display
-    const currentDiscountDisplay = grandDiscount !== null ? grandDiscount.toFixed(2) : 'Loading...';
+   const currentDiscountDisplay = (
+    // Check if grandDiscount is not null, undefined, AND is a finite number
+    // Number() converts null/"" to 0, which is a safe default.
+    typeof grandDiscount === 'number' && !isNaN(grandDiscount)
+        ? grandDiscount.toFixed(2)
+        : (
+            grandDiscount !== null && grandDiscount !== undefined 
+            ? Number(grandDiscount).toFixed(2) // Try to convert it if it's a string
+            : 'Loading...'
+        )
+);
 
     return (
         <motion.div 

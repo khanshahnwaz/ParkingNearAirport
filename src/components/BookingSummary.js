@@ -3,7 +3,7 @@ export default function BookingSummary({ booking }) {
     name, location, country, type,
     dropoff, pickup, duration, base,
     promoCode, discount, discountPercent,
-    cancellation, vehicle
+    cancellation, vehicle,total
   } = booking;
 
   // Safely convert to numbers
@@ -18,6 +18,8 @@ const discountValue = parseFloat(discount) || 0;
   const discountedTotal = vehicleTotal - (discountValue || 0);  // Apply discount if exists
   const finalTotal = cancellation ? discountedTotal + 2 : discountedTotal; // Add cancellation fee
 
+ booking.total=finalTotal;
+  
   console.log("final amount",finalTotal)
 
   return (
