@@ -10,6 +10,8 @@ export default function PaymentForm({ bookingSummary, onPrevious, total }) {
     const [loading, setLoading] = useState(false);
     const{duration,base,vehicle,discount}=total;
 
+    console.log("booking ",bookingSummary)
+
     // console.log("booking ",total)
 
     // Total calculation (moved here for clarity)
@@ -60,7 +62,7 @@ const discountValue = parseFloat(discount) || 0;
                     body: JSON.stringify({
                         userId: user.id, // Associate order with the logged-in user
                         amount: finalAmount,
-                        currency: "INR",
+                        currency: "EUR",
                         bookingSummary: bookingSummary,
                     }),
                 }
@@ -95,6 +97,7 @@ const discountValue = parseFloat(discount) || 0;
 
             const stripeData = await stripeResponse.json();
             setLoading(false);
+            console.log("stripe response ",stripeData);
 
             if (stripeData.ok && stripeData.id) {
                 const stripe = await stripePromise;
@@ -165,6 +168,8 @@ const discountValue = parseFloat(discount) || 0;
                 {/* Flight Details */}
                 {(bookingSummary.hasFlightDetails || bookingSummary.departureTerminal || bookingSummary.arrivalTerminal) && (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-b pb-4">
+                                                <h4 className="font-semibold text-gray-900">Flight Details</h4>
+
                         {/* ... flight detail display ... */}
                         {bookingSummary.departureTerminal && (
                             <p className="text-gray-800">

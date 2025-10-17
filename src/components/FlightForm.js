@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import SelectBox from "./SelectBox";
+import { useAuth } from "@/context/AuthContext";
 
 export default function FlightForm({ onNext, onPrevious }) {
   const [formData, setFormData] = useState({
@@ -13,7 +14,17 @@ export default function FlightForm({ onNext, onPrevious }) {
     arrivalFlightNo: "",
   });
 
-  const terminals = ["Terminal 1", "Terminal 2", "Terminal 3", "Terminal 4"];
+  const {parkingOptions,company}=useAuth();
+  //  console.log("parking options ",parkingOptions)
+  // const terminals = ["Terminal 1", "Terminal 2", "Terminal 3", "Terminal 4"];
+  // console.log("location ",company)
+  let terminals=parkingOptions.filter((val)=>val.location==company);
+  // console.log("terminals ",JSON.parse(terminals));
+  // console.log("parking op", parkingOptions);
+  // console.log("terminal ",terminals)
+
+  terminals=terminals[0].terminals;
+  
 
   // for normal inputs
   const handleChange = (e) => {

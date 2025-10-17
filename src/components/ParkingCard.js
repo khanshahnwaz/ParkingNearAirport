@@ -3,10 +3,13 @@
 import { useState } from "react";
 import ParkingModal from "./ParkingModal";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
 
-export default function ParkingCard({ data, promo,dates }) {
+export default function ParkingCard({ data, promo,dates,loc }) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
+
+ 
 
   const discount = promo?.discount || 0;
   const discountedPrice = discount
@@ -58,7 +61,7 @@ const count = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
         </div>
 
         {/* Icons row */}
-        <div className="flex justify-center gap-3 py-2">
+        {/* <div className="flex justify-center gap-3 py-2">
           {data.icons.map((icon, i) => (
             <div
               key={i}
@@ -67,7 +70,7 @@ const count = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
               {icon}
             </div>
           ))}
-        </div>
+        </div> */}
 
         {/* Rating */}
         <div className="text-center py-2">

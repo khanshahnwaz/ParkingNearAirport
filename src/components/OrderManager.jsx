@@ -8,7 +8,7 @@ import { OrderDetailModal } from './OrderDetailModal'; // We'll define this moda
 import { OrderTable } from './OrderTable';
 
 const API_ENDPOINT = 'get_all_orders.php'; // New API to fetch all orders
-const UPDATE_ENDPOINT = 'update_order_status.php'; // New API to update status
+const UPDATE_ENDPOINT = 'update-order-status.php'; // New API to update status
 
 const OrderManager = () => {
     const [orders, setOrders] = useState([]);

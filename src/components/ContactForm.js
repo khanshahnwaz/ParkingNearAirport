@@ -26,7 +26,7 @@ export default function ContactForm({ onNext,data }) {
   };
 
   const handleSubmit = (e) => {
-    console.log("first step",formData)
+    // console.log("first step",formData)
     e.preventDefault();
     // In a real app, you would validate the form data here
     onNext(formData);
@@ -62,8 +62,8 @@ export default function ContactForm({ onNext,data }) {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700">Contact Number (11 digits)</label>
-            <input type="tel" name="contact" value={formData.contact} onChange={handleChange} className="text-gray-600 py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
+            <label className="block text-sm font-medium text-gray-700">Contact Number (11 digits)*</label>
+            <input required type="tel" name="contact" value={formData.contact} onChange={handleChange} className="text-gray-600 py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">Number of vehicles</label>

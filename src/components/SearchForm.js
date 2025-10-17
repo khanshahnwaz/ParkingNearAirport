@@ -78,6 +78,7 @@ export default function SearchForm() {
     const [dates, setDates] = useState({ start: "", end: "" });
     const [promo, setPromo] = useState(null);
     const [isFormValid, setIsFormValid] = useState(false);
+ const{setCompany}=useAuth();
 
     const { airportLocations, promoCodes } = useAuth();
     
@@ -92,7 +93,7 @@ export default function SearchForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!isFormValid) return;
-
+  setCompany(location);
         const query = new URLSearchParams({
             location,
             start: dates.start,

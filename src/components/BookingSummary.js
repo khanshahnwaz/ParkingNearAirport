@@ -20,7 +20,7 @@ const discountValue = parseFloat(discount) || 0;
 
  booking.total=finalTotal;
   
-  console.log("final amount",finalTotal)
+  // console.log("final amount",finalTotal)
 
   return (
     <div className="bg-[#fdf8f2] rounded-lg shadow-md p-6 w-full md:w-1/3">
@@ -89,7 +89,7 @@ const discountValue = parseFloat(discount) || 0;
         </div>
         <div className="flex justify-between ">
           <p className="text-gray-800">Base Amount:</p>
-          <p className="text-gray-600">€{base.toFixed(2)}</p>
+          <p className="text-gray-600">£{base.toFixed(2)}</p>
         </div>
         {promoCode && (
           <div className="bg-blue-100 p-4 rounded-lg ">
@@ -100,11 +100,11 @@ const discountValue = parseFloat(discount) || 0;
             <div className="text-xs text-gray-500">
               <p className="text-gray-700">Discount: {discountPercent}% off</p>
               <p className="text-gray-700">Valid until: 3/6/2026</p>
-              {cancellation && <p className="text-gray-700">Cancellation coverage: <span className="float-right text-red-600">€2</span></p>}
+              {cancellation && <p className="text-gray-700">Cancellation coverage: <span className="float-right text-red-600">£2</span></p>}
             </div>
             <div className="flex justify-between text-green-600">
               <p>Discount ({promoCode}):</p>
-              <p>-€{discount?.toFixed(2)}</p>
+              <p>-£{discount?.toFixed(2)}</p>
             </div>
           </div>
         )}
@@ -113,7 +113,7 @@ const discountValue = parseFloat(discount) || 0;
       {/* ✅ FINAL TOTAL DISPLAY */}
       <div className="flex justify-between items-center text-lg font-bold mt-4 border-t pt-4">
         <p className="text-gray-900">Total Amount:</p>
-        <p className="text-gray-700">€{finalTotal.toFixed(2)}</p>
+        <p className="text-gray-700">£{finalTotal.toFixed(2)}</p>
       </div>
     </div>
   );

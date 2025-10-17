@@ -217,7 +217,7 @@ export default function SearchResultsPage() {
         ) : (
           <div className="grid md:grid-cols-2 gap-6">
             {filteredLots.map((lot, ind) => (
-              <ParkingCard key={lot.id || ind} data={lot} promo={promo} dates={{"start":start,"end":end}} />
+              <ParkingCard key={lot.id || ind} data={lot} loc={location} promo={promo} dates={{"start":start,"end":end}} />
             ))}
           </div>
         )}

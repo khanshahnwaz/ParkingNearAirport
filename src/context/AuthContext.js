@@ -66,6 +66,9 @@ export function AuthProvider({ children }) {
     const [isDataLoading, setIsDataLoading] = useState(true);
     const [dataError, setDataError] = useState(null);
 
+    // current chosen parking data
+    const[company,setCompany]=useState();
+
     // Derived State: Unique airport locations from parking data
     const airportLocations = useMemo(() => {
         const locations = new Set(parkingOptions.map(option => option.location));
@@ -88,6 +91,7 @@ export function AuthProvider({ children }) {
                 // 1. Fetch Parking Options (POST, default method)
                 const parkingData = await apiFetch('get_parking.php', {});
                 setParkingOptions(parkingData || []);
+                // console.log(parkingData)
                 
                 // 2. Fetch Promocodes (POST, default method)
                 const promoData = await apiFetch('get_promocodes.php', {});
@@ -141,7 +145,11 @@ export function AuthProvider({ children }) {
 
                 // New Discount Variable 👈 EXPOSED
                 grandDiscount,
-                setGrandDiscount 
+                setGrandDiscount ,
+
+                // current chosen company
+                company,
+                setCompany
             }}
         >
             {children}
