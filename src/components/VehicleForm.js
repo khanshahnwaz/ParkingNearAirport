@@ -83,23 +83,23 @@ export default function VehicleForm({ onNext, onPrevious, data }) {
 
     const validated = vehicles.map((v, idx) => {
       const errors = {};
-      if (!v.make || !v.make.trim()) {
-        errors.make = 'Make is required';
-        if (firstErrorIndex === null) firstErrorIndex = idx;
-      }
-      if (!v.model || !v.model.trim()) {
-        errors.model = 'Model is required';
-        if (firstErrorIndex === null) firstErrorIndex = idx;
-      }
-      if (!v.color || !v.color.trim()) {
-        errors.color = 'Color is required';
-        if (firstErrorIndex === null) firstErrorIndex = idx;
-      }
-      if (!v.regNo || !v.regNo.trim()) {
-        errors.regNo = 'Reg. No is required';
-        if (firstErrorIndex === null) firstErrorIndex = idx;
-      }
-      if (Object.keys(errors).length > 0) isValid = false;
+      // if (!v.make || !v.make.trim()) {
+      //   errors.make = 'Make is required';
+      //   if (firstErrorIndex === null) firstErrorIndex = idx;
+      // }
+      // if (!v.model || !v.model.trim()) {
+      //   errors.model = 'Model is required';
+      //   if (firstErrorIndex === null) firstErrorIndex = idx;
+      // }
+      // if (!v.color || !v.color.trim()) {
+      //   errors.color = 'Color is required';
+      //   if (firstErrorIndex === null) firstErrorIndex = idx;
+      // }
+      // if (!v.regNo || !v.regNo.trim()) {
+      //   errors.regNo = 'Reg. No is required';
+      //   if (firstErrorIndex === null) firstErrorIndex = idx;
+      // }
+      // if (Object.keys(errors).length > 0) isValid = false;
       return { ...v, errors };
     });
 
@@ -143,7 +143,7 @@ export default function VehicleForm({ onNext, onPrevious, data }) {
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-semibold text-gray-800">Vehicle Details</h2>
         <div className="flex items-center gap-3">
-          <p className="text-sm text-gray-600">Required: <span className="font-medium text-gray-800">{requiredCount}</span></p>
+          {/* <p className="text-sm text-gray-600">Required: <span className="font-medium text-gray-800">{requiredCount}</span></p> */}
           <button
             type="button"
             onClick={addCar}
@@ -179,7 +179,7 @@ export default function VehicleForm({ onNext, onPrevious, data }) {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Make */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">Make*</label>
+                  <label className="block text-sm font-medium text-gray-700">Make</label>
                   <input
                     type="text"
                     name="make"
@@ -209,7 +209,7 @@ export default function VehicleForm({ onNext, onPrevious, data }) {
 
                 {/* Model */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">Model*</label>
+                  <label className="block text-sm font-medium text-gray-700">Model</label>
                   <input
                     type="text"
                     name="model"
@@ -241,7 +241,7 @@ export default function VehicleForm({ onNext, onPrevious, data }) {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Color */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">Color*</label>
+                  <label className="block text-sm font-medium text-gray-700">Color</label>
                   <input
                     type="text"
                     name="color"
@@ -271,7 +271,7 @@ export default function VehicleForm({ onNext, onPrevious, data }) {
 
                 {/* Reg No */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">Reg No*</label>
+                  <label className="block text-sm font-medium text-gray-700">Reg No</label>
                   <input
                     type="text"
                     name="regNo"

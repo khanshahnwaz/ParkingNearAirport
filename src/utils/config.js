@@ -15,6 +15,7 @@ export const apiFetch = async (endpoint, payload = {}) => {
 
     for (let attempt = 0; attempt < maxRetries; attempt++) {
         try {
+            console.log("payload ",payload)
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {

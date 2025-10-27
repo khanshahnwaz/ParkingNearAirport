@@ -1,18 +1,23 @@
 // UserDashboard.jsx
 "use client";
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo,useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 import UserProfile from '@/components/UserProfile';
 import UserOrders from '@/components/UserOrders';
 import { useAuth } from '@/context/AuthContext';
-
+import { useRouter } from 'next/navigation';
+import Loader from '@/components/Loader';
 export default function UserDashboard() {
     // 1. ALL HOOKS MUST BE CALLED UNCONDITIONALLY AT THE TOP
     const [activeTab, setActiveTab] = useState('profile');
     const { user } = useAuth(); // Hook 2
 
-    // Move useMemo UPWARDS, before the conditional return 👈 FIX APPLIED
+    const router = useRouter();
+
+    const [authChecked, setAuthChecked] = useState(false);
+
+     // Move useMemo UPWARDS, before the conditional return 👈 FIX APPLIED
     const renderContent = useMemo(() => { // Hook 3
         if (activeTab === 'profile') {
             return <UserProfile />;
@@ -22,6 +27,24 @@ export default function UserDashboard() {
         return null;
     }, [activeTab]); // No dependency on 'user' needed here, so the hook is safe.
 
+
+    useEffect(() => {
+        async function verifyRole() {
+
+            if (!user || user.role == 'guest') {
+                router.replace('/unauthorized'); // Redirect to access denied page
+            } else {
+                setAuthChecked(true);
+            }
+        }
+        verifyRole();
+    }, []);
+
+    if (!authChecked) {
+        return <Loader message="User" />; // Keep showing loader until auth is verified
+    }
+
+   
     // 2. CONDITIONAL RETURN COMES AFTER ALL HOOKS
     if (!user) {
         return (
@@ -42,7 +65,7 @@ export default function UserDashboard() {
         <div className="min-h-screen bg-gray-50 p-4 sm:p-8 font-sans">
             <header className="mb-8 max-w-4xl mx-auto">
                 <h1 className="text-4xl font-extrabold text-gray-900">
-                    Welcome, {user.name || user.email}!
+                    Welcome, {user.name || user.Name || user.email}!
                 </h1>
                 <p className="text-gray-500 mt-1">Manage your profile and track your bookings.</p>
             </header>

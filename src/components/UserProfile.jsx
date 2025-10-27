@@ -9,7 +9,7 @@ export default function UserProfile() {
     const { user, login } = useAuth();
     // Initialize form state from global user data
     const [formState, setFormState] = useState({
-        name: user.name || '',
+        name: user.name || user.Name || '',
         email: user.email || '',
         password: '', // Password field is never pre-filled
         currentPassword: '', 

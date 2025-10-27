@@ -71,8 +71,8 @@ export default function UserOrders() {
                                     >
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-indigo-600">{order.id}</td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                                            {details?.start ? new Date(details.start).toLocaleDateString() : 'N/A'} - 
-                                            {details?.end ? new Date(details.end).toLocaleDateString() : 'N/A'}
+                                            {details?.dropoff ? new Date(details.dropoff).toLocaleDateString() : 'N/A'} - 
+                                            {details?.pickup ? new Date(details.pickup).toLocaleDateString() : 'N/A'}
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-green-700">£{parseFloat(order.amount).toFixed(2)}</td>
                                         <td className="px-6 py-4 whitespace-nowrap"><StatusPill status={order.status} /></td>

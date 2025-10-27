@@ -91,7 +91,7 @@ export default function Navbar() {
                             {user ? (
                                 <>
                                     <span className="px-4 py-2 rounded-md bg-gray-700">
-                                        {user.name || user.email}
+                                        {user.name ||user.Name || user.email}
                                     </span>
                                     <button
                                         onClick={logout}
