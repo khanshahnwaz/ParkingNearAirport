@@ -130,7 +130,7 @@ export default function AdminDashboard() {
           <h1 className="text-xl font-semibold text-gray-800">
             Admin Dashboard
           </h1>
-          <span className="text-gray-500 text-sm">Welcome, {user?.name}</span>
+          <span className="text-gray-500 text-sm">Welcome, {user?.Name || user?.name || user?.email}</span>
         </div>
       </header>
 
