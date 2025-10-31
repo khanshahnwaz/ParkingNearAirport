@@ -23,7 +23,7 @@ export default function FlightForm({ onNext, onPrevious }) {
   // console.log("parking op", parkingOptions);
   // console.log("terminal ",terminals)
 
-  terminals=terminals[0].terminals;
+  terminals=terminals.length?terminals[0].terminals:[];
   
 
   // for normal inputs

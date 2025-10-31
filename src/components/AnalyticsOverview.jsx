@@ -11,6 +11,7 @@ import {
   DollarSign,
   PieChart,
   BarChart3,
+  Wallet
 } from "lucide-react";
 import {
   ResponsiveContainer,
@@ -154,7 +155,7 @@ export default function AdminDashboard({
           { title: "Total Companies", value: totalCompanies, icon: Building2, color: "text-emerald-600" },
           { title: "Total Parking Options", value: totalAirports, icon: Plane, color: "text-yellow-600" },
           { title: "Total Orders", value: totalOrders, icon: Calendar, color: "text-purple-600" },
-          { title: "Total Revenue", value: `£${totalRevenue}`, icon: DollarSign, color: "text-red-600" },
+          { title: "Total Revenue", value: `£${totalRevenue}`, icon: Wallet, color: "text-red-600" },
         ].map((item, i) => (
           <motion.div
             key={i}
