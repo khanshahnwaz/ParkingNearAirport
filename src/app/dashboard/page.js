@@ -93,7 +93,7 @@ export default function UserDashboard() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4 }}
-                    className="p-6 md:p-8"
+                    className="p-6 md:p-8 text-black"
                 >
                     {renderContent}
                 </motion.div>

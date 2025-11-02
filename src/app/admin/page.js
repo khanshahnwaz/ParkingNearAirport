@@ -65,7 +65,7 @@ export default function AdminDashboard() {
   const tabs = useMemo(
     () => [
       { key: "overview", label: "Overview" },
-      { key: "orders", label: "Orders" },
+      { key: "bookings", label: "Bookings" },
       { key: "users", label: "Users" },
       { key: "promocodes", label: "Promo Codes" },
       { key: "companies", label: "Companies" },
@@ -88,7 +88,7 @@ export default function AdminDashboard() {
         );
       case "companies":
         return <CompaniesManager />;
-      case "orders":
+      case "bookings":
         return <OrderManager orders={orders} fetchOrders={fetchOrders} />;
       case "users":
         return <UserManager users={users} fetchUsers={fetchUsers} />;
