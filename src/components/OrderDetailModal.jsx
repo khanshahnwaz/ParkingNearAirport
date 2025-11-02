@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Phone, MapPin, Car, DollarSign, Save, X, Loader2, Pencil, Plus, Trash2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Car, DollarSign, Save, X, Loader2, Pencil,Trash2,Plus } from 'lucide-react';
 
 // --- API FETCH UTILITIES (Self-Contained) ---
 const localApiFetch = async (endpoint, options) => {
@@ -50,13 +50,14 @@ const StatusPill = ({ status }) => {
 
 // Component to handle full order detail display and editing
 const OrderDetailModal = ({ order, onClose, fetchOrders }) => {
+    
     // --- 1. HOOKS: MUST BE AT THE TOP AND UNCONDITIONAL ---
     const [isEditing, setIsEditing] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [localOrder, setLocalOrder] = useState(order);
     const [editError, setEditError] = useState(null);
     const [successMessage, setSuccessMessage] = useState(null);
-    const [availableParkings, setAvailableParkings] = useState([]); // NEW: Parking options for terminal list
+    const [availableParkings, setAvailableParkings] = useState([]); // Parking options list
     
     // useMemo for booking details
     const details = useMemo(() => {
@@ -66,57 +67,64 @@ const OrderDetailModal = ({ order, onClose, fetchOrders }) => {
                    ? JSON.parse(localOrder.booking_details) 
                    : localOrder.booking_details;
 
+        const vehicle = (bd.vehicles && bd.vehicles.length > 0) ? bd.vehicles[0] : {};
+
         return {
             ...bd,
-            // Expose user contact details
-            userEmail: localOrder.user_email,
-            userFirstName: localOrder.user_firstName,
-            user_id:localOrder.user_id,
-            
-            // Vehicles must be an array of objects for iteration
-            vehicles: bd.vehicles || [{ make: '', model: '', regNo: '', color: '' }],
-            
-            // Expose Date/Terminal fields
-            pickup: bd.pickup || '',
-            dropoff: bd.dropoff || '',
-            location: bd.location || '',
-            duration: bd.duration || '',
+            ...vehicle, 
             departureTerminal: bd.departureTerminal || '',
             arrivalTerminal: bd.arrivalTerminal || '',
             departureFlightNo: bd.departureFlightNo || '',
             arrivalFlightNo: bd.arrivalFlightNo || '',
+            userEmail: localOrder.user_email,
+            userFirstName: localOrder.user_firstName,
+            user_id:localOrder.user_id,
+            pickup: bd.pickup || '',
+            dropoff: bd.dropoff || '',
+            location: bd.location || '',
+            duration: bd.duration || '',
         };
     }, [localOrder]);
+
+    // NEW FIX: Robustly flatten terminals from parking options
+    const availableTerminals = useMemo(() => {
+        // console.log("aval ",availableParkings)
+        // console.log("details ",details)
+        const parkingOptionsForLocation = availableParkings.filter(p => p.location === details.location);
+        // console.log("final ",parkingOptionsForLocation)
+        
+        if (parkingOptionsForLocation.length === 0) return [];
+
+        const uniqueTerminals = new Set();
+        
+        parkingOptionsForLocation.forEach(option => {
+            if (Array.isArray(option.terminals)) {
+                option.terminals.forEach(terminal => {
+                    if (typeof terminal === 'string' && terminal.trim()) {
+                        uniqueTerminals.add(terminal.trim());
+                    }
+                });
+            }
+        });
+        
+        return Array.from(uniqueTerminals).sort(); // Return sorted list of unique terminals
+    }, [availableParkings, details.location]);
+
 
     // Effect to fetch all parking options once, for terminal filtering
     useEffect(() => {
         const fetchParkings = async () => {
             try {
-                // Assuming get_parking.php returns { data: [ {location, terminals: []} ] }
+                // Fetching parking data to get the list of terminals per airport
                 const result = await localApiFetch("get_parking.php", { method: 'GET' });
-                setAvailableParkings(result.data || []);
+                // console.log("result ",result)
+                setAvailableParkings(result || []);
             } catch (err) {
                 console.error("Failed to fetch parking options for terminals:", err);
             }
         };
         fetchParkings();
     }, []);
-
-
-    // Filter terminals based on the selected location (Airport)
-    const availableTerminals = useMemo(() => {
-        // Find the specific parking option matching the order's location
-        const parkingOption = availableParkings.find(p => p.location === details.location);
-        
-        // Return a unique flat list of all terminals associated with that location
-        if (!parkingOption) return [];
-
-        const uniqueTerminals = new Set();
-        // Since terminals is an array of strings in the DB JSON, flatten it
-        parkingOption.terminals.forEach(t => uniqueTerminals.add(t));
-        
-        return Array.from(uniqueTerminals);
-    }, [availableParkings, details.location]);
 
 
     const handleVehicleChange = useCallback((index, field, value) => {
@@ -155,13 +163,18 @@ const OrderDetailModal = ({ order, onClose, fetchOrders }) => {
 
     const handleChange = useCallback((e) => {
         const { name, value } = e.target;
+        
         const newDetails = { ...details };
 
-        // Handle fields that map to the booking details object directly
-        if (['departureTerminal', 'arrivalTerminal', 'departureFlightNo', 'arrivalFlightNo', 'userEmail', 'userFirstName', 'pickup', 'dropoff', 'location'].includes(name)) {
+        // Handle vehicle details (which are already handled via the vehicle specific inputs, but keeping for robustness)
+        if (['make', 'model', 'regNo', 'color'].includes(name)) {
+             // This case is typically not hit since we use handleVehicleChange for vehicle inputs
+             // But if we were to dynamically update, this structure would be needed.
+             // We'll rely on the manual vehicle inputs below for clarity.
+        } else if (['departureTerminal', 'arrivalTerminal', 'departureFlightNo', 'arrivalFlightNo', 'userEmail', 'userFirstName', 'pickup', 'dropoff', 'location'].includes(name)) {
             newDetails[name] = value;
 
-            // --- START DURATION CALCULATION LOGIC ---
+            // DURATION CALCULATION LOGIC
             if (name === 'pickup' || name === 'dropoff') {
                 const newPickup = name === 'pickup' ? value : newDetails.pickup;
                 const newDropoff = name === 'dropoff' ? value : newDetails.dropoff;
@@ -177,7 +190,6 @@ const OrderDetailModal = ({ order, onClose, fetchOrders }) => {
                     newDetails.duration = ''; 
                 }
             }
-            // --- END DURATION CALCULATION LOGIC ---
             
         // Handle global order amount update
         } else if (name === 'amount') {
@@ -200,7 +212,6 @@ const OrderDetailModal = ({ order, onClose, fetchOrders }) => {
         setEditError(null);
         
         try {
-            // Status updates go to update-order-status.php
             await localApiFetch('update-order-status.php', {
                 body: { orderId: localOrder.id, status: newStatus }
             });
@@ -292,7 +303,7 @@ const OrderDetailModal = ({ order, onClose, fetchOrders }) => {
                     required={required}
                     readOnly={isCurrentlyReadOnly} 
                     step={type === 'number' ? '0.01' : undefined}
-                    className={`w-full border rounded-lg px-3 py-2 text-sm shadow-sm ${isCurrentlyReadOnly ? 'bg-gray-100' : 'bg-white focus:ring-indigo-500 focus:border-indigo-500 text-black'}`}
+                    className={`w-full border rounded-lg px-3 py-2 text-sm shadow-sm ${isCurrentlyReadOnly ? 'bg-gray-100' : 'bg-white focus:ring-indigo-500 focus:border-indigo-500'}`}
                 />
             </div>
         );
@@ -346,7 +357,7 @@ const OrderDetailModal = ({ order, onClose, fetchOrders }) => {
                                             name="status"
                                             value={localOrder.status}
                                             onChange={(e) => setLocalOrder(prev => ({ ...prev, status: e.target.value }))}
-                                            className='border rounded-lg p-1 text-sm bg-white text-black'
+                                            className='border rounded-lg p-1 text-sm bg-white'
                                             disabled={isSubmitting}
                                         >
                                             <option value="PENDING">PENDING</option>
@@ -376,8 +387,8 @@ const OrderDetailModal = ({ order, onClose, fetchOrders }) => {
                                 <h4 className="font-bold text-lg border-b pb-2">Booking Duration & Location</h4>
                                 <div className="grid grid-cols-2 gap-4">
                                     {/* PICKUP & DROPOFF TIMES - NOW EDITABLE */}
-                                    {renderEditField('pickup', 'datetime-local', 'Pickup Date & Time', true, false)}
-                                    {renderEditField('dropoff', 'datetime-local', 'Dropoff Date & Time', true, false)}
+                                    {renderEditField('pickup', 'datetime-local', 'Pickup Date & Time', true, !isEditing)}
+                                    {renderEditField('dropoff', 'datetime-local', 'Dropoff Date & Time', true, !isEditing)}
                                     {renderEditField('location', 'text', 'Location (Airport)', true, true)} {/* Locked */}
                                     <div className="mb-3">
                                         <label className="block text-xs font-semibold text-gray-700">Duration (Days)</label>
@@ -395,39 +406,47 @@ const OrderDetailModal = ({ order, onClose, fetchOrders }) => {
                                     {/* Departure Terminal Dropdown */}
                                     <div className="mb-3">
                                         <label className="block text-xs font-semibold text-gray-700">Departure Terminal</label>
-                                        <select
-                                            name="departureTerminal"
-                                            value={details.departureTerminal}
-                                            onChange={handleChange}
-                                            disabled={!isEditing || availableTerminals.length === 0}
-                                            className={`w-full border rounded-lg px-3 py-2 text-sm shadow-sm ${!isEditing ? 'bg-gray-100' : 'bg-white focus:ring-indigo-500 focus:border-indigo-500'}`}
-                                        >
-                                            <option value="">{availableTerminals.length > 0 ? 'Select Terminal' : 'No Terminals Available'}</option>
-                                            {availableTerminals.map(terminal => (
-                                                <option key={terminal} value={terminal}>{terminal}</option>
-                                            ))}
-                                        </select>
-                                        {!isEditing && details.departureTerminal && <p className="text-sm pt-2">{details.departureTerminal}</p>}
-                                        {!isEditing && !details.departureTerminal && <p className="text-sm pt-2 text-gray-500">N/A</p>}
+                                        {isEditing ? (
+                                            <select
+                                                name="departureTerminal"
+                                                value={details.departureTerminal}
+                                                onChange={handleChange}
+                                                disabled={availableTerminals.length === 0}
+                                                className={`w-full border rounded-lg px-3 py-2 text-sm shadow-sm bg-white focus:ring-indigo-500 focus:border-indigo-500`}
+                                            >
+                                                <option value="">{availableTerminals.length > 0 ? 'Select Terminal' : 'No Terminals Available'}</option>
+                                                {availableTerminals.map(terminal => (
+                                                    <option key={terminal} value={terminal}>{terminal}</option>
+                                                ))}
+                                            </select>
+                                        ) : (
+                                            <span className="mt-1 block w-full rounded-lg bg-gray-100 px-3 py-2 text-sm shadow-sm border border-gray-300">
+                                                {details.departureTerminal || 'N/A'}
+                                            </span>
+                                        )}
                                     </div>
 
                                     {/* Arrival Terminal Dropdown */}
                                     <div className="mb-3">
                                         <label className="block text-xs font-semibold text-gray-700">Arrival Terminal</label>
-                                        <select
-                                            name="arrivalTerminal"
-                                            value={details.arrivalTerminal}
-                                            onChange={handleChange}
-                                            disabled={!isEditing || availableTerminals.length === 0}
-                                            className={`w-full border rounded-lg px-3 py-2 text-sm shadow-sm ${!isEditing ? 'bg-gray-100' : 'bg-white focus:ring-indigo-500 focus:border-indigo-500'}`}
-                                        >
-                                            <option value="">{availableTerminals.length > 0 ? 'Select Terminal' : 'No Terminals Available'}</option>
-                                            {availableTerminals.map(terminal => (
-                                                <option key={terminal} value={terminal}>{terminal}</option>
-                                            ))}
-                                        </select>
-                                        {!isEditing && details.arrivalTerminal && <p className="text-sm pt-2">{details.arrivalTerminal}</p>}
-                                        {!isEditing && !details.arrivalTerminal && <p className="text-sm pt-2 text-gray-500">N/A</p>}
+                                        {isEditing ? (
+                                            <select
+                                                name="arrivalTerminal"
+                                                value={details.arrivalTerminal}
+                                                onChange={handleChange}
+                                                disabled={availableTerminals.length === 0}
+                                                className={`w-full border rounded-lg px-3 py-2 text-sm shadow-sm bg-white focus:ring-indigo-500 focus:border-indigo-500`}
+                                            >
+                                                <option value="">{availableTerminals.length > 0 ? 'Select Terminal' : 'No Terminals Available'}</option>
+                                                {availableTerminals.map(terminal => (
+                                                    <option key={terminal} value={terminal}>{terminal}</option>
+                                                ))}
+                                            </select>
+                                        ) : (
+                                            <span className="mt-1 block w-full rounded-lg bg-gray-100 px-3 py-2 text-sm shadow-sm border border-gray-300">
+                                                {details.arrivalTerminal || 'N/A'}
+                                            </span>
+                                        )}
                                     </div>
                                     
                                     {renderEditField('departureFlightNo', 'text', 'Departure Flight No.', false, !isEditing)}
