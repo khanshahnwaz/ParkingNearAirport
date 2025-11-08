@@ -95,7 +95,7 @@ export function AuthProvider({ children }) {
                 
                 // 2. Fetch Promocodes (POST, default method)
                 const promoData = await apiFetch('get_promocodes.php', {});
-                setPromocodes(promoData || []);
+                setPromocodes(promoData.filter((code)=>code.activeness=='Active') || []);
 
                 // 3. Fetch Grand Discount (GET) 👈 NEW FETCH
                 // We pass null for the payload and 'GET' for the method
