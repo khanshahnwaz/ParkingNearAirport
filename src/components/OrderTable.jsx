@@ -29,7 +29,7 @@ const OrderTable = ({ title, orders, onViewDetails }) => {
         }
     };
 
-    console.log("orders ",orders)
+    // console.log("orders ",orders)
     return (
         <div>
             <h3 className="text-xl font-semibold mb-3 border-b pb-1 text-gray-700">🗓️ {title} ({orders.length})</h3>

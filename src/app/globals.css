@@ -24,3 +24,19 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+.react-datepicker {
+  font-family: 'Inter', sans-serif;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.react-datepicker__header {
+  background-color: #1e3a8a; /* blue-900 */
+  color: white;
+}
+
+.react-datepicker__time-container {
+  border-left: 1px solid #e5e7eb;
+}

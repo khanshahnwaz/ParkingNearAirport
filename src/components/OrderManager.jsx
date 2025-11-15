@@ -47,3 +47,19 @@ const OrderManager = ({ orders, fetchOrders }) => {
 };
 
 export default OrderManager;
+
+
+// Effect to fetch all parking options once, for terminal filtering
+    // useEffect(() => {
+    //     const fetchParkings = async () => {
+    //         try {
+    //             // Fetching parking data to get the list of terminals per airport
+    //             const result = await localApiFetch("get_parking.php", { method: 'GET' });
+    //             // console.log("result ",result)
+    //             setAvailableParkings(result || []);
+    //         } catch (err) {
+    //             console.error("Failed to fetch parking options for terminals:", err);
+    //         }
+    //     };
+    //     fetchParkings();
+    // }, []);

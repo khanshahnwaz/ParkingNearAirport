@@ -56,8 +56,8 @@ const count = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
         </div>
 
         {/* Logo */}
-        <div className="flex justify-center py-4">
-          <img src={`${data.logo?data.logo:'/logo.png'}`} alt={data.name} className="h-12" />
+        <div className="flex justify-center py-4 text-lg">
+          <img src={`${data.logo?data.logo:'/logo.png'}`} alt={data.name} className="h-20" />
         </div>
 
         {/* Icons row */}
@@ -81,10 +81,10 @@ const count = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
         {/* Price */}
         <div className="text-center py-2">
           {discount > 0 && (
-            <p className="line-through text-gray-500"><del>£{data.price}</del></p>
+            <p className="line-through text-gray-500"><del>{`£${data.price}`}</del></p>
           )}
           <p className="text-2xl font-bold text-blue-900">
-            £{discountedPrice}
+            {`£${discountedPrice}`}<small>/day</small>
           </p>
         </div>
 
